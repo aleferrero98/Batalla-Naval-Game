@@ -1,0 +1,8 @@
+1ro: git checkout <Nombre de rama> (para seleccionar la rama que en la que se va a trabajar
+2do: git fetch y git pull (para actualizar el dispositivos con los ultimos cambios)
+3ro: (trabajar, hacer modificacones, etc.)
+4to: git status o git s (verificar cuales archivos cambiaron)
+5to: git add <archivos para el commit> o git add -A (para llevar los archivos al stage)
+6to: git commit -m "<mensaje del commit>" (realizar commit)
+7mo: git push origin <Nombre de rama> (subir los archivos al github en esa rama)
+8vo: git log o git lg (para verificar los cambios que realice) 
