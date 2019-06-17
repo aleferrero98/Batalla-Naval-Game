@@ -51,7 +51,7 @@ public class Jugador {
      * resta 1 a la cantidad de disparos disponibles del tipo actual
      */
     private void gastarDisparo() {
-        disparosDisponibles.put(maneraDeDisparar.getTipo(),disparosDisponibles.get(maneraDeDisparar.getTipo()) -1 );
+        disparosDisponibles.put(maneraDeDisparar.getTipo(), disparosDisponibles.get(maneraDeDisparar.getTipo()) -1 );
     }
 
     /**
