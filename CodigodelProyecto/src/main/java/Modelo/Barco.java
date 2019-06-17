@@ -1,6 +1,7 @@
-package Modelo.FactoryBarcos;
+package Modelo;
 
 import Modelo.Celda;
+import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
 import java.util.ArrayList;
@@ -14,15 +15,47 @@ public abstract class Barco {
     private int size;
 
     /**
-     * Clase abstracta Barco, no tiene constructor porque solo deben poder instanciase sus subclases
+     *
      */
+    protected Barco(int size, TipoDeBarco tipoDeBarco){
+        this.size = size;
+        this.tipoDeBarco = tipoDeBarco;
+    }
 
     /**
-     * getter comun para saber que celdas corresponden a que barco
-     * @return
+     * getters y setters
+     * los setters son protected porque solo las subclases pueden decidir sobre estas celdas
      */
     public ArrayList<Celda> getCeldasTotales() {
         return celdasTotales;
+    }
+
+    protected void setCeldasTotales(ArrayList<Celda> celdasTotales){
+        this.celdasTotales = celdasTotales;
+    }
+
+    public ArrayList<Celda> getCeldasNoBombardeadas() {
+        return celdasNoBombardeadas;
+    }
+
+    protected void setCeldasNoBombardeadas(ArrayList<Celda> celdasNoBombardeadas) {
+        this.celdasNoBombardeadas = celdasNoBombardeadas;
+    }
+
+    public Celda getCeldaCabeza() {
+        return celdaCabeza;
+    }
+
+    public void setCeldaCabeza(Celda celdaCabeza) {
+        this.celdaCabeza = celdaCabeza;
+    }
+
+    public char getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(char orientacion) {
+        this.orientacion = orientacion;
     }
 
     /**
@@ -31,7 +64,8 @@ public abstract class Barco {
      * @param celdaBombardeada
      * @throws Exception
      */
-    public void bombardear(Celda celdaBombardeada) throws Exception{
+    public void bombardear(Celda celdaBombardeada) throws Exception{ //cuando se dispara un barco el que dispara debe
+                                                                    //fijarse que se le pueda disparar, sino salta excepcion
         if (this.hundido()){
             throw new Exception("el barco esta hundido no se le puede disparar");
         }

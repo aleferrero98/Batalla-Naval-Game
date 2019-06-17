@@ -1,12 +1,17 @@
-package Modelo.FactoryBarcos;
+package Modelo.FactoryBarcos.BarcosParaAstilleroMilitar;
 
 import Modelo.Celda;
+import Modelo.Barco;
+import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
-public class Portaaviones extends Barco{
+public class Fragata extends Barco {
 
+    private static final int FRAGATA_SIZE = 2;
 
-
+    public Fragata() {
+        super(FRAGATA_SIZE, TipoDeBarco.FRAGATA);
+    }
 
     @Override
     public boolean puedePosicionar(Tablero tablero, char orientacion, Celda celdaCabeza) {

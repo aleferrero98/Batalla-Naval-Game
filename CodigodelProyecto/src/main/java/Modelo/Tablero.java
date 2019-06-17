@@ -1,6 +1,5 @@
 package Modelo;
 
-import Modelo.FactoryBarcos.Barco;
 import Modelo.StrategyDisparo.InvalidDisparoException;
 
 import java.util.ArrayList;
@@ -43,6 +42,28 @@ public class Tablero {
                 this.celdas[i][j] = new Celda(i,j);
             }
         }
+    }
+
+    private void encenderOApagar(boolean on_off){
+        for(int i = 0; i < filas ; i++){
+            for(int j = 0; j < columnas ; j++){
+                getCelda(i,j).setActivada(on_off);
+            }
+        }
+    }
+
+    /**
+     * activa todas las celdas del tablero
+     */
+    public void activarTablero(){
+        this.encenderOApagar(true);
+    }
+
+    /**
+     * desactiva todas las celdas del tablero
+     */
+    public void desactivarTablero(){
+        this.encenderOApagar(false);
     }
 
     /**
@@ -132,6 +153,17 @@ public class Tablero {
     public void setBarco(Barco barco, char orientacion, Celda celdaCabeza) throws Exception {
         barco.posicionar(this, orientacion, celdaCabeza);
         addBarco(barco);
+    }
+
+    public ArrayList<Celda> parseToCeldasDelTablero(int[][] filasColumnas)throws IndexOutOfBoundsException{
+        ArrayList<Celda> celdasDelTablero = new ArrayList<>();
+        for(int i = 0; i < filasColumnas.length; i++){
+            int fila = filasColumnas[i][0];
+            int columna = filasColumnas[i][1];
+            Celda celda = this.getCelda(fila,columna); //aca se puede tirar la excepcion
+            celdasDelTablero.add(celda);
+        }
+        return celdasDelTablero;
     }
 
 }

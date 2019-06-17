@@ -1,7 +1,6 @@
 package Modelo;
 
 
-import Modelo.FactoryBarcos.Barco;
 import Modelo.StrategyDisparo.InvalidDisparoException;
 
 /**
