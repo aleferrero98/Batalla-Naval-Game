@@ -91,7 +91,11 @@ public class Celda {
     public void bombardear()throws InvalidDisparoException{
         if(isActivada()){
             if(isCeldaConBarco()) {
-                this.barco.golpe();
+                try {
+                    this.barco.bombardear(this);
+                } catch (Exception e) {
+                    throw new InvalidDisparoException(e.getMessage());
+                }
             }
             else{
                 // avisar que no tenia barco o nose

@@ -1,5 +1,6 @@
 package Modelo.StrategyDisparo;
 
 public enum Disparo {
-    ALEATORIO, COMUN, CRUZ, TERMODIRIGIDO, CORTADO
+    ALEATORIO, COMUN, CORTADO, CRUZ, TERMODIRIGIDO
+
 }
