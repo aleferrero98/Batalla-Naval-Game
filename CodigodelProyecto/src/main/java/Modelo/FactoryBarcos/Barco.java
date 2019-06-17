@@ -1,4 +1,7 @@
-package Modelo;
+package Modelo.FactoryBarcos;
+
+import Modelo.Celda;
+import Modelo.Tablero;
 
 import java.util.ArrayList;
 
