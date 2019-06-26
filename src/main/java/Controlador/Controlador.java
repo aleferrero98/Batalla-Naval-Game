@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Controlador implements Observer {
     private Modelo modelo;
-    private Vista vista;
+    //private Vista vista;
 
 
     public Controlador() {
