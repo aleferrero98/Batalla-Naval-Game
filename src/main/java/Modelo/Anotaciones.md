@@ -18,5 +18,5 @@ llaman al metodo bombardear de ese barco
 - 2 Destructores: ocupan 3 casillas.
 - 1 Fragatas: ocupan 2 casilla.
 
-### Tipos y cantidiades de disparos: 
+### Tipos y cantidades de disparos: 
 
