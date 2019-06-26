@@ -67,6 +67,10 @@ public class VistaLogin implements ActionListener{
 		}
 		
 	}
+	
+	public void update() {
+		
+	}
 
 }
 

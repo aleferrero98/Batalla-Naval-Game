@@ -123,4 +123,8 @@ private int buscarBotonApretado(ActionEvent e, JRadioButton[] arrayBotones) {
 public void cambiarColorBoton(JButton boton) {
 	boton.setBackground(new java.awt.Color(255,50,50)); //cambia el color del boton a rojo
 }
+
+public void update() {
+	
+}
 }

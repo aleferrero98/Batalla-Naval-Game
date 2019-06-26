@@ -40,7 +40,7 @@ public class VistaInicio implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {  //toma el evento desde la interfaz
 		// TODO Auto-generated method stub
 		if(e.getSource()==botones.get(0)) {
 			System.exit(0);
@@ -53,6 +53,12 @@ public class VistaInicio implements ActionListener{
 	}
 		
 	}
+	
+	public void update() {
+		
+	}
+	
+	
 
 }
 

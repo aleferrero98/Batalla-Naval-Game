@@ -2,11 +2,21 @@ package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 import paneles.PanelConfig;
 
@@ -46,6 +56,7 @@ public class VistaConfig implements ActionListener{
 			System.out.println("boton Silenciar juego");
 		}else if(e.getSource()==botones.get(1)) {
 			System.out.println("boton Instrucciones");
+			mostrarInstrucciones();
 		}else if(e.getSource()==botones.get(2)) {
 			System.out.println("color gris");
 			cambiarFondo(Color.GRAY);
@@ -68,6 +79,47 @@ public class VistaConfig implements ActionListener{
 	
 	public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
 		panel.setBackground(color);
+	}
+	
+	public void mostrarInstrucciones() {
+	
+		 // Preparamos la ventana de ejemplo
+        JFrame v = new JFrame("Instrucciones del Juego Batalla Naval");
+        v.setBounds(0, 0, 500, 700);
+        v.setLocationRelativeTo(null);
+        JTextArea areaTexto = new JTextArea();
+        areaTexto.setEditable(false);
+        JScrollPane scroll = new JScrollPane(); 
+        scroll.setViewportView(areaTexto);
+        v.add(scroll);
+    
+        Leer(areaTexto);
+        // Se visualiza la ventana
+        v.setVisible(true);
+		
+	}
+	 private void Leer(JTextArea area) {
+		 String aux = "";
+		 String texto = "";
+		 String resultado = "";
+		 try {
+		 File archivo = new File("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\Vistas\\Interfaz Grafica\\instrucciones\\instrucciones.txt");
+		 if (archivo != null) {
+		 FileReader archivos = new FileReader(archivo);
+		 BufferedReader leer = new BufferedReader(archivos);
+		 while ((aux = leer.readLine()) != null) {
+		 texto += aux + "\n";
+		 }
+		 leer.close();
+		 }
+		 } catch (IOException ex) {
+		 JOptionPane.showMessageDialog(null, "Error Importando - " + ex);
+		 }
+		 area.setText(texto);
+		 }
+	
+	public void update() {
+		
 	}
 
 }
