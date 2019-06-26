@@ -1,6 +1,7 @@
 package Modelo.Juego.ElementosPrincipales;
 
 import Modelo.Excepciones.InvalidDisparoException;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.Juego.StrategyDisparo.DisparoBehavior;
@@ -18,7 +19,6 @@ public class Jugador {
     public Jugador(Tablero tableroBarcos, Tablero tableroDisparos) {
         this.tableroBarcos = tableroBarcos;
         this.tableroDisparos = tableroDisparos;
-
         this.disparosDisponibles = new HashMap<>();
     }
 
@@ -46,7 +46,7 @@ public class Jugador {
      * @throws InvalidDisparoException
      */
     public void disparar(int fila, int columna)throws InvalidDisparoException{
-        if(disparoDisponible()){
+        if(disparoDisponible(this.maneraDeDisparar.getTipo())){
             this.maneraDeDisparar.disparar(fila, columna, this.tableroDisparos);
             gastarDisparo();
         }
@@ -58,8 +58,8 @@ public class Jugador {
      *
      * @return la disponibilidad del tipo de disparo que tiene actualmente
      */
-    public boolean disparoDisponible(){
-        if(disparosDisponibles.get(maneraDeDisparar.getTipo()) < 1) {
+    public boolean disparoDisponible(Disparo tipodeDisparo){
+        if(disparosDisponibles.get(tipodeDisparo) < 1) {
             return false;
         }
         else return true;
@@ -71,7 +71,10 @@ public class Jugador {
      * @return
      */
     public boolean barcoParaPonerDisponible(TipoDeBarco barco){
-
+        if(barcosDisponibles.get(barco)>0){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -92,7 +95,12 @@ public class Jugador {
      * @return
      */
     public boolean todosLosBarcosColocados(){
-
+        for(Integer recorrer : barcosDisponibles.values()){
+            if(recorrer!=0){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -102,11 +110,12 @@ public class Jugador {
      * @param fila
      * @param columna
      */
-    public void colocarBarco(Barco barco, char orientacion, int fila, int columna){
-        if(puedePosicionarBarco(barco,orientacion,fila,columna)){
-
+    public void colocarBarco(Barco barco, char orientacion, int fila, int columna) throws InvalidPosicionBarco {
+        if(barcoParaPonerDisponible(barco.getTipoDeBarco()) && puedePosicionarBarco(barco,orientacion,fila,columna)){
+                tableroBarcos.setBarco(barco,orientacion,fila,columna);
+                gastarBarco(barco.getTipoDeBarco());
         }
-
+        //Caso contrario no hace nada
     }
 
 
@@ -123,7 +132,7 @@ public class Jugador {
      * @param barco
      */
     private void gastarBarco(TipoDeBarco barco){
-
+        barcosDisponibles.put(barco,(barcosDisponibles.get(barco)-1));
     }
 
 }
