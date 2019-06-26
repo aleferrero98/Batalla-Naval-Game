@@ -1,12 +1,13 @@
 package Modelo;
 
+import Controlador.Controlador;
+import Modelo.Juego.ElementosPrincipales.JuegoBatallaNaval;
+
 import java.util.ArrayList;
 
 public class Modelo implements Observable {
     private ArrayList<Observer> observers;
-    private Juego juego;
-
-
+    private JuegoBatallaNaval juegoBatallaNaval;
 
 
     @Override
