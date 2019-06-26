@@ -118,6 +118,7 @@ public class PanelLogin extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
+	/*
 	@Override
 	public void paintComponent(Graphics g) {
 		Dimension tamanio=getSize();
@@ -125,7 +126,7 @@ public class PanelLogin extends JPanel {
 		g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
 		setOpaque(false);
 		super.paintComponent(g);
-	}
+	}*/
 	public ArrayList<JButton> getBotones(){
 		return listaBotones;
 	}

@@ -11,14 +11,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class PanelJuego extends JPanel {
 	
 	private JButton[] btnBarcos;
 	private JRadioButton[] btnPosicion;
+	private JButton[] btnDisparos;
 	private PanelMatriz mLocal;
 	private PanelMatriz mVisit;
+	private JButton btnPausa;
 
     /**
      * Create the panel.
@@ -60,6 +64,26 @@ public class PanelJuego extends JPanel {
     	btnPosicion[2] = rdbtnEste;
     	btnPosicion[3] = rdbtnOeste;
     	
+    	btnPausa = new JButton("Pausa");
+    	
+    	JButton btnDComun = new JButton("Disparo Comun");
+    	
+    	JButton btnDCruz = new JButton("Disparo Cruz");
+    	
+    	JButton btnDRandom = new JButton("Disparo Random");
+    	
+    	JButton btnDCortado = new JButton("Disparo Cortado");
+
+    	JButton btnDTermodirigido = new JButton("Disparo Termodirigido");
+    	
+    	btnDisparos = new JButton[5];   //hay 5 tipos de disparos (botones)
+    	btnDisparos[0] = btnDComun;
+    	btnDisparos[1] = btnDCruz;
+    	btnDisparos[2] = btnDRandom;
+    	btnDisparos[3] = btnDCortado;
+    	btnDisparos[4] = btnDTermodirigido;
+    	
+    	
     	
     	GroupLayout groupLayout = new GroupLayout(this);
     	groupLayout.setHorizontalGroup(
@@ -85,14 +109,36 @@ public class PanelJuego extends JPanel {
     							.addComponent(rdbtnEste)
     							.addComponent(rdbtnSur)
     							.addComponent(rdbtnNorte))))
-    				.addPreferredGap(ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+    				.addGap(18)
+    				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+    					.addComponent(btnPausa)
+    					.addComponent(btnDTermodirigido)
+    					.addComponent(btnDCortado)
+    					.addComponent(btnDRandom)
+    					.addComponent(btnDCruz)
+    					.addComponent(btnDComun))
+    				.addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
     				.addComponent(mVisit, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
     	);
     	groupLayout.setVerticalGroup(
     		groupLayout.createParallelGroup(Alignment.LEADING)
     			.addComponent(mVisit, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
     			.addGroup(groupLayout.createSequentialGroup()
-    				.addComponent(mLocal, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+    				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+    					.addGroup(groupLayout.createSequentialGroup()
+    						.addContainerGap()
+    						.addComponent(btnPausa)
+    						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    						.addComponent(btnDComun)
+    						.addPreferredGap(ComponentPlacement.UNRELATED)
+    						.addComponent(btnDCruz)
+    						.addPreferredGap(ComponentPlacement.UNRELATED)
+    						.addComponent(btnDRandom)
+    						.addPreferredGap(ComponentPlacement.UNRELATED)
+    						.addComponent(btnDCortado)
+    						.addPreferredGap(ComponentPlacement.UNRELATED)
+    						.addComponent(btnDTermodirigido))
+    					.addComponent(mLocal, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
     				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
     					.addGroup(groupLayout.createSequentialGroup()
     						.addGap(11)
@@ -132,4 +178,11 @@ public class PanelJuego extends JPanel {
 	public JRadioButton[] getBotonesPosicion(){
 		return btnPosicion;
 	}
+	public JButton[] getBotonesDisp(){
+		return btnDisparos;
+	}
+	public JButton getBotonPausa(){
+		return btnPausa;
+	}
 }
+

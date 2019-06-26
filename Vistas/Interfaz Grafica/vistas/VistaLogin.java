@@ -1,6 +1,7 @@
 package vistas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -66,6 +67,9 @@ public class VistaLogin implements ActionListener{
 			System.out.println("boton cancelar");
 		}
 		
+	}
+	public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
+		panel.setBackground(color);
 	}
 	
 	public void update() {

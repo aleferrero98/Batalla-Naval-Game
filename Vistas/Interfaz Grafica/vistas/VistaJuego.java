@@ -1,6 +1,7 @@
 package vistas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,8 @@ public class VistaJuego implements ActionListener{
 	private JButton[][] btnMatrizVisit;
 	private JButton[] btnBarcos;
 	private JRadioButton[] btnPosicion;
+	private JButton[] btnDisparos;
+	private JButton btnPausa;
 	
 	
 	
@@ -42,6 +45,8 @@ public VistaJuego() {
 	btnMatrizVisit=panel.getBotonesMatVis();
 	btnBarcos=panel.getBotonesBarc();
 	btnPosicion = panel.getBotonesPosicion();
+	btnDisparos = panel.getBotonesDisp();
+	btnPausa = panel.getBotonPausa();
 	setObserver();
 	
 }
@@ -67,7 +72,11 @@ private void setObserver() {
 	}
 	for(int i=0; i < btnPosicion.length; i++) {
 		btnPosicion[i].addActionListener(this);
-}
+	}
+	for(int i=0; i < btnDisparos.length; i++) {
+		btnDisparos[i].addActionListener(this);
+	}
+	btnPausa.addActionListener(this);
 }
 
 @Override
@@ -77,6 +86,7 @@ public void actionPerformed(ActionEvent e) {
 	int[] resultMatVis = buscarBotonApretado(e,btnMatrizVisit);
 	int resultBarcos = buscarBotonApretado(e,btnBarcos);
 	int resultPosicion = buscarBotonApretado(e,btnPosicion);
+	int resultDisparo = buscarBotonApretado(e,btnDisparos);
 	
 	if(resultMatLoc!=null) {
 		System.out.println("apreto boton matriz local: "+ "fila "+resultMatLoc[0] +" columna "+resultMatLoc[1]);
@@ -86,7 +96,11 @@ public void actionPerformed(ActionEvent e) {
 	}else if(resultBarcos > -1) {
 		System.out.println("apreto boton tipo de barco: "+"posicion "+ resultBarcos);
 	}else if(resultPosicion > -1) {
-		System.out.println("apreto boton orientacion: "+"posicion "+resultPosicion);
+		System.out.println("apreto boton orientacion: "+"posicion "+ resultPosicion);
+	}else if(resultDisparo > -1) {
+		System.out.println("apreto boton tipo de disparo: "+"posicion "+ resultDisparo);
+	}else if(e.getSource()==btnPausa) {
+		System.out.println("apreto boton de pausa");
 	}
 	
 }
@@ -122,6 +136,10 @@ private int buscarBotonApretado(ActionEvent e, JRadioButton[] arrayBotones) {
 }
 public void cambiarColorBoton(JButton boton) {
 	boton.setBackground(new java.awt.Color(255,50,50)); //cambia el color del boton a rojo
+}
+
+public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
+	panel.setBackground(color);
 }
 
 public void update() {

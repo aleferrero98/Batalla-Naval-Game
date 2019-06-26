@@ -8,11 +8,12 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			//VistaInicio vista=new VistaInicio();
-			VistaConfig vista=new VistaConfig();
+			//VistaConfig vista=new VistaConfig();
 			//VistaLogin vista=new VistaLogin();
-			//VistaJuego vista=new VistaJuego();
+			VistaJuego vista=new VistaJuego();
 			vista.hacerVisible(true);
 	        vista.ubicarAlMedio();
+	    
 		}
 }
 
