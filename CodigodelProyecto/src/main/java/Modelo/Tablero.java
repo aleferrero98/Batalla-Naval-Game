@@ -1,10 +1,12 @@
 package Modelo;
 
-import Modelo.StrategyDisparo.InvalidDisparoException;
+import Modelo.Excepciones.InvalidPosicionBarco;
+import Modelo.Excepciones.InvalidDisparoException;
 
 import java.util.ArrayList;
 
 public class Tablero {
+
     private int filas;
     private int columnas;
     private Celda[][] celdas;
@@ -19,6 +21,8 @@ public class Tablero {
      */
     public Tablero(int filas, int columnas) {
         crearTablero(filas, columnas);
+        barcosEnTablero = new ArrayList<Barco>();
+        barcosNoHundidos = new ArrayList<Barco>();
     }
 
     /**
@@ -27,6 +31,8 @@ public class Tablero {
      */
     public Tablero(int tamanio) {
         crearTablero(tamanio, tamanio);
+        barcosEnTablero = new ArrayList<Barco>();
+        barcosNoHundidos = new ArrayList<Barco>();
     }
 
     /**
@@ -36,6 +42,8 @@ public class Tablero {
      * @param columnas
      */
     private void crearTablero(int filas, int columnas) {
+        this.filas = filas;
+        this.columnas = columnas;
         this.celdas = new Celda[filas][columnas];
         for(int i = 0; i < filas ; i++){
             for(int j = 0; j < columnas ; j++){
@@ -105,7 +113,7 @@ public class Tablero {
      * @return true a la celda se le puede disparar, es decir si esta activada
      */
     public boolean esValido(int fila, int columna){
-        if(existeCelda(fila, columna)){
+        if(existeCelda(fila,columna)){
             return getCelda(fila, columna).isActivada();
         }
         else return false;
@@ -127,9 +135,11 @@ public class Tablero {
      * si se hundio algun barco lo quita de la lista de los no hundidos
      */
     private void actualizarBarcos() {
-        for(Barco barco: this.barcosNoHundidos){
-            if(barco.hundido()){
-                this.barcosNoHundidos.remove(barco);
+        if(!barcosNoHundidos.isEmpty()){
+            for(Barco barco: this.barcosNoHundidos){
+                if(barco.hundido()){
+                 this.barcosNoHundidos.remove(barco);
+                }
             }
         }
     }
@@ -146,12 +156,13 @@ public class Tablero {
      * posiciona un barco de esa manera en este tablero
      * @param barco
      * @param orientacion
-     * @param celdaCabeza
+     * @param fila
+     * @param columna
      * @throws Exception si no puede posicionar, el cliente debe primero preguntarle al barco si
      *                      se puede posicionar en este tablero
      */
-    public void setBarco(Barco barco, char orientacion, Celda celdaCabeza) throws Exception {
-        barco.posicionar(this, orientacion, celdaCabeza);
+    public void setBarco(Barco barco, char orientacion, int fila, int columna) throws InvalidPosicionBarco {
+        barco.posicionar(this, orientacion,this.getCelda(fila,columna));
         addBarco(barco);
     }
 
@@ -166,4 +177,17 @@ public class Tablero {
         return celdasDelTablero;
     }
 
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+    public ArrayList<Barco> getBarcosEnTablero() {
+        return barcosEnTablero;
+    }
+    public ArrayList<Barco> getBarcosNoHundidos() {
+        return barcosNoHundidos;
+    }
 }

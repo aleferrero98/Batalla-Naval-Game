@@ -1,8 +1,9 @@
-package Modelo.StrategyDisparo;
+package Modelo.Test;
 
 import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.FactoryBarcos.BarcosParaAstilleroMilitar.Submarino;
+import Modelo.StrategyDisparo.DisparoTermodirigido;
 import Modelo.Tablero;
 import org.junit.Before;
 import org.junit.Test;

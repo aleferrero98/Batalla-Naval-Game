@@ -1,4 +1,4 @@
-package Modelo.StrategyDisparo;
+package Modelo.Excepciones;
 
 public class InvalidDisparoException extends Exception {
     public InvalidDisparoException() {

@@ -1,7 +1,7 @@
 package Modelo;
 
 
-import Modelo.StrategyDisparo.InvalidDisparoException;
+import Modelo.Excepciones.InvalidDisparoException;
 
 /**
  * Una celda puede tener encima un barco o no

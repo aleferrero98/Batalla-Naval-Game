@@ -2,35 +2,22 @@ package Modelo.FactoryBarcos.BarcosParaAstilleroMilitar;
 
 import Modelo.Celda;
 import Modelo.Barco;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
 import java.util.ArrayList;
 
 public class Submarino extends Barco {
+
     private static final int SUBMARINO_SIZE = 4;
 
     public Submarino() {
         super(SUBMARINO_SIZE, TipoDeBarco.SUBMARINO);
     }
-    @Override
-    public boolean puedePosicionar(Tablero tablero, char orientacion, Celda celdaCabeza) {
-        ArrayList<Celda> celdasPosibles;
-        try {
-            celdasPosibles = this.celdasParaEsteBarco(tablero, orientacion, celdaCabeza);
-        }
-        catch(IndexOutOfBoundsException e) {
-            return false;   //la excepcion que puede saltar es la de getCelda, osea que no se puede posicionar porque me sali del tablero
-        }
-        for(Celda celda: celdasPosibles){
-            if(celda.isCeldaConBarco() || celda.isActivada()){
-                return false; //si alguna de las posibles celdas ya tiene barco o esta activada no se puede posicionar
-            }
-        }
-        return true; //si llego hasta aca ninguna dio false, entonces puede posicionarse en estas celdas
-    }
 
-    private int[][] generarFilasColumnas(char orientacion, Celda celdaCabeza) {
+    @Override
+    public int[][] generarFilasColumnas(char orientacion, Celda celdaCabeza) {
         int[][] posiblesFilasColumnas = new int[SUBMARINO_SIZE][2];
         int filaCabeza = celdaCabeza.getFila();
         int columnaCabeza = celdaCabeza.getColumna();
@@ -69,28 +56,5 @@ public class Submarino extends Barco {
             posiblesFilasColumnas[3][1] = columnaCabeza;
         }
         return posiblesFilasColumnas;
-    }
-
-    private ArrayList<Celda> celdasParaEsteBarco(Tablero tablero,char orientacion, Celda celdaCabeza)throws IndexOutOfBoundsException
-    {
-        int[][] posiblesFilasColumnas = generarFilasColumnas(orientacion, celdaCabeza);
-        ArrayList<Celda> celdasParaEsteBarco = tablero.parseToCeldasDelTablero(posiblesFilasColumnas);
-        return celdasParaEsteBarco;
-    }
-
-
-    @Override
-    public void posicionar(Tablero tablero, char orientacion, Celda celdaCabeza) throws Exception {
-        if(puedePosicionar(tablero,orientacion,celdaCabeza)){
-            ArrayList<Celda> celdas = this.celdasParaEsteBarco(tablero, orientacion, celdaCabeza);
-            for(Celda celda: celdas){
-                celda.setBarco(this);
-            }
-            super.setCeldasTotales(celdas);
-            super.setCeldasNoBombardeadas(celdas);
-            super.setCeldaCabeza(celdaCabeza);
-            super.setOrientacion(orientacion);
-        }
-
     }
 }

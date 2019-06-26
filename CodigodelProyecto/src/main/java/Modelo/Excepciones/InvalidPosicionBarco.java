@@ -1,10 +1,10 @@
 package Modelo.Excepciones;
 
-public class NoAddBarco extends Exception {
-    public NoAddBarco(){
+public class InvalidPosicionBarco extends Exception {
+    public InvalidPosicionBarco(){
         super("*No se puede agregar Barco*");
     }
-    public NoAddBarco(String mensaje){
+    public InvalidPosicionBarco(String mensaje){
         super(mensaje);
     }
 }

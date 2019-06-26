@@ -1,5 +1,6 @@
 package Modelo;
 
+import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.StrategyDisparo.*;
 
 import java.util.HashMap;

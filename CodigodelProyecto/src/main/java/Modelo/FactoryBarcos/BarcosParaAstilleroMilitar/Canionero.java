@@ -2,10 +2,12 @@ package Modelo.FactoryBarcos.BarcosParaAstilleroMilitar;
 
 import Modelo.Celda;
 import Modelo.Barco;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
 public class Canionero extends Barco {
+
     private static final int CANIONERO_SIZE = 4;
 
     public Canionero() {
@@ -13,12 +15,10 @@ public class Canionero extends Barco {
     }
 
     @Override
-    public boolean puedePosicionar(Tablero tablero, char orientacion, Celda celdaCabeza) {
-        return false;
+    public int[][] generarFilasColumnas(char orientacion, Celda celdaCabeza) {
+        return super.barcosRectos(orientacion,celdaCabeza,getCanioneroSize());
     }
-
-    @Override
-    public void posicionar(Tablero tablero, char orientacion, Celda celdaCabeza) throws Exception {
-
+    public static int getCanioneroSize() {
+        return CANIONERO_SIZE;
     }
 }

@@ -2,10 +2,12 @@ package Modelo.FactoryBarcos.BarcosParaAstilleroMilitar;
 
 import Modelo.Celda;
 import Modelo.Barco;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
 public class Destructor extends Barco {
+
     private static final int DESTRUCTOR_SIZE = 3;
 
     public Destructor() {
@@ -13,12 +15,10 @@ public class Destructor extends Barco {
     }
 
     @Override
-    public boolean puedePosicionar(Tablero tablero, char orientacion, Celda celdaCabeza) {
-        return false;
+    public int[][] generarFilasColumnas(char orientacion, Celda celdaCabeza)  {
+        return super.barcosRectos(orientacion,celdaCabeza,getDestructorSize());
     }
-
-    @Override
-    public void posicionar(Tablero tablero, char orientacion, Celda celdaCabeza) throws Exception {
-
+    public static int getDestructorSize() {
+        return DESTRUCTOR_SIZE;
     }
 }

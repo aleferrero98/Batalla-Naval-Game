@@ -2,6 +2,7 @@ package Modelo.FactoryBarcos.BarcosParaAstilleroMilitar;
 
 import Modelo.Celda;
 import Modelo.Barco;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.FactoryBarcos.TipoDeBarco;
 import Modelo.Tablero;
 
@@ -13,13 +14,10 @@ public class Fragata extends Barco {
         super(FRAGATA_SIZE, TipoDeBarco.FRAGATA);
     }
 
-    @Override
-    public boolean puedePosicionar(Tablero tablero, char orientacion, Celda celdaCabeza) {
-        return false;
+    public int[][] generarFilasColumnas(char orientacion, Celda celdaCabeza) {
+        return super.barcosRectos(orientacion,celdaCabeza,getFragataSize());
     }
-
-    @Override
-    public void posicionar(Tablero tablero, char orientacion, Celda celdaCabeza) throws Exception {
-
+    public static int getFragataSize() {
+        return FRAGATA_SIZE;
     }
 }

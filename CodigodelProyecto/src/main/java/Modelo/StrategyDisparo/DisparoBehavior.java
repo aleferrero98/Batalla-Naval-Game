@@ -1,5 +1,6 @@
 package Modelo.StrategyDisparo;
 
+import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Tablero;
 
 public interface DisparoBehavior {
