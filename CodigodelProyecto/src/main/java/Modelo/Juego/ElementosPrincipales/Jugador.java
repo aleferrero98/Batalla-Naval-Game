@@ -1,6 +1,7 @@
 package Modelo.Juego.ElementosPrincipales;
 
 import Modelo.Excepciones.InvalidDisparoException;
+import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.Juego.StrategyDisparo.DisparoBehavior;
 
@@ -13,16 +14,22 @@ public class Jugador {
     private DisparoBehavior maneraDeDisparar;
     private HashMap<Disparo, Integer> disparosDisponibles;
 
+
+    private HashMap<TipoDeBarco, Integer> barcosDisponibles;
+
     public Jugador(Tablero tableroBarcos, Tablero tableroDisparos) {
         this.tableroBarcos = tableroBarcos;
         this.tableroDisparos = tableroDisparos;
 
         this.disparosDisponibles = new HashMap<>();
-        this.disparosDisponibles.put(Disparo.COMUN, 100000);
     }
 
     public void setDisparosDisponibles(HashMap<Disparo, Integer> disparosDisponibles) {
         this.disparosDisponibles = disparosDisponibles;
+    }
+
+    public void setBarcosDisponibles(HashMap<TipoDeBarco, Integer> barcosDisponibles) {
+        this.barcosDisponibles = barcosDisponibles;
     }
 
     /**
