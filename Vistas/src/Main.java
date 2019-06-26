@@ -1,6 +1,7 @@
 import vistas.VistaInicio;
 import vistas.VistaLogin;
 import vistas.VistaConfig;
+import vistas.VistaJuego;
 
 public class Main {
 
@@ -9,6 +10,7 @@ public class Main {
 			VistaInicio vista=new VistaInicio();
 			//VistaConfig vista=new VistaConfig();
 			//VistaLogin vista=new VistaLogin();
+			//VistaJuego vista=new VistaJuego();
 			vista.hacerVisible(true);
 	        vista.ubicarAlMedio();
 		}

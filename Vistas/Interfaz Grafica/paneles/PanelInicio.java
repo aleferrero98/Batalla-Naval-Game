@@ -31,28 +31,36 @@ public class PanelInicio extends JPanel {
 		listaBotones.add(btnRegistrarse);
 		listaBotones.add(btnConfiguracionAyuda);
 		
+		JPanel logo = new PanelAvatar(new ImageIcon(getClass().getResource("/imagenesAvatar/logoBatallaNaval.jpg")));
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(211)
 					.addComponent(btnRegistrarse, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 					.addGap(192))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(406)
+					.addComponent(btnSalir, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+					.addGap(31))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(188)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnIniciarPartida, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
 						.addComponent(btnConfiguracionAyuda, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(173))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(406)
-					.addComponent(btnSalir, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-					.addGap(31))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(122, Short.MAX_VALUE)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addGap(157))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(327)
+					.addGap(63)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
 					.addComponent(btnIniciarPartida)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnRegistrarse)
@@ -78,3 +86,4 @@ public class PanelInicio extends JPanel {
 		return listaBotones;
 	}
 }
+
