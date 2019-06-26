@@ -2,7 +2,6 @@ package Controlador;
 
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
-import Modelo.Juego.StrategyDisparo.InvalidDisparoException;
 import Modelo.*;
 
 import java.awt.*;
