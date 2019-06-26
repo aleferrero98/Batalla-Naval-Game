@@ -1,7 +1,6 @@
 package Modelo;
 
 import Controlador.Avatar;
-import Controlador.Controlador;
 import Modelo.Juego.ElementosPrincipales.JuegoBatallaNaval;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
@@ -35,10 +34,7 @@ public class Modelo implements Observable {
     public void dispararEn(int fila, int columna) {
     }
 
-    public void pausar() {
-    }
-
-    public void salirDePausa() {
+    public void pausar(boolean b) {
     }
 
     public void selecBarco(TipoDeBarco b) {
@@ -47,30 +43,30 @@ public class Modelo implements Observable {
     public void setBarcoActual(char orientacion, int fila, int columna) {
     }
 
-    public void abrirRegistro() {
+    public void puedePonerBarcos(boolean b) {
     }
 
-    public void abrirConfig() {
-    }
-
-    public void irJuego() {
-    }
-
-    public void PuedePonerBarcos(boolean b) {
-    }
-
-    public void PuedeDisparar(boolean b) {
+    public void puedeDisparar(boolean b) {
     }
 
     public void registrarJugador1(Avatar avatar, String nombre) {
     }
 
-    public void irInicio() {
-    }
-
-    public void setColor(Color c) {
-    }
-
     public void sonido(boolean b) {
+    }
+
+    public boolean estaRegistrado() {
+    }
+
+    public void crearJuego() {
+    }
+
+    public boolean listoParaJugar() {
+        boolean listo = true;
+
+        return listo;
+    }
+
+    public void runJuego() {
     }
 }

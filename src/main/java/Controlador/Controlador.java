@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Controlador implements Observer {
     private Modelo modelo;
-    private Vista vista;
 
 
     public Controlador() {
@@ -20,82 +19,74 @@ public class Controlador implements Observer {
         modelo.addObserver(this);
     }
 
-    public void accion(AccionEnVista accion, ArrayList<String> s){
-        switch (accion){
-            case DISPARAR: {
-                int fila = Integer.parseInt(s.get(0));
-                int columna = Integer.parseInt(s.get(1));
-                modelo.dispararEn(fila,columna);
-            }
-            break;
-            case ELIJE_DISPARO:{
-                    Disparo d = toDisparo(s.get(0));
-                    modelo.setDisparo(d);
-            }
-            break;
-            case PAUSAR:{
-                modelo.pausar();
-            }
-            break;
-            case CONTINUAR:{
-                modelo.salirDePausa();
-            }
-            break;
-            case ELIJE_BARCO:{
-                TipoDeBarco b = toBarco(s.get(0));
-                modelo.selecBarco(b);
-            }
-            break;
-            case PONE_BARCO:{
-                char orientacion = s.get(0).charAt(0);
-                int fila = Integer.parseInt(s.get(1));
-                int columna = Integer.parseInt(s.get(2));
-                modelo.setBarcoActual(orientacion,fila,columna);
-            }
-            break;
-            case IR_A_REGISTRO:{
-                modelo.abrirRegistro();
-            }
-            break;
-            case CONFIG_AYUDA:{
-                modelo.abrirConfig();
-            }
-            break;
-            case INICIAR_JUEGO:{
-                modelo.irJuego();
-                modelo.PuedePonerBarcos(true);
-                modelo.PuedeDisparar(false);
-            }
-            break;
-            case JUGAR:{
-                modelo.PuedePonerBarcos(false);
-                modelo.PuedeDisparar(true);
-
-            }
-            break;
-            case REGISTRARSE:{
-                Avatar avatar = toAvatar(s.get(0));
-                String nombre = s.get(1);
-                modelo.registrarJugador1(avatar, nombre);
-                modelo.irInicio();
-            }
-            break;
-            case SELEC_COLOR:{
-                Color c = toColor(s.get(0));
-                modelo.setColor(c);
-            }
-            break;
-            case MUTE:{
-                modelo.sonido(true);
-            }
-            break;
-            case UNMUTE:{
-                modelo.sonido(false);
-            }
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + accion);
+    public void dispararEnTablero(int fila, int columna){
+        modelo.dispararEn(fila,columna);
+    }
+    public void elegirDisparo(String disparo){
+        modelo.setDisparo(toDisparo(disparo));
+    }
+    public void pausar(){
+        modelo.pausar(true);
+    }
+    public void continuar(){
+        modelo.pausar(false);
+    }
+    public void elegirBarco(String tipoDeBarco){
+        modelo.selecBarco(toBarco(tipoDeBarco));
+    }
+    public void ponerBarco(char orientacion, int fila, int columna){
+        modelo.setBarcoActual(orientacion,fila,columna);
+    }
+    public void irLogIn(){
+        /*
+        se apaga la vista de inicio
+        se enciende la vista de LogIn
+         */
+    }
+    public void irConfigAyuda(){
+        /*
+        se apaga la vista de inicio
+        se enciende la vista de configuracion y ayuda
+         */
+    }
+    public void irJuego(){
+        if(modelo.estaRegistrado()){
+            /*
+            se apaga la vista de inicio
+            se enciende la vista de juego
+             */
+            modelo.crearJuego();
+            modelo.puedePonerBarcos(true);
+            modelo.puedeDisparar(false);
         }
+    }
+
+    public void start(){
+        if(modelo.listoParaJugar()){
+            modelo.puedeDisparar(true);
+            modelo.puedePonerBarcos(false);
+            modelo.runJuego();
+        }
+    }
+
+    public void registrarJugador(String nombre, String avatar){
+        if(nombre != null && avatar !=null) {
+            modelo.registrarJugador1(toAvatar(avatar), nombre);
+            /*
+            se apaga la ventana de LogIn
+            y se enciende la ventana de inicio
+             */
+        }
+    }
+    public void selecColor(Color color){
+        /*
+        setear el mismo color a las vistas menos la de inicio
+         */
+    }
+
+    public void mute(){
+    }
+    public void unmute(){
 
     }
 
@@ -124,17 +115,6 @@ public class Controlador implements Observer {
         }
     }
 
-    private Color toColor(String s){
-        s = s.toUpperCase();
-        switch (s){
-            case "GRIS": return Color.GRAY;
-            case "VERDE": return Color.GREEN;
-            case "AMARILLO": return Color.YELLOW;
-            case "NARANJA": return Color.ORANGE;
-            case "BLANCO": return Color.WHITE;
-            default: throw new IllegalStateException("Unexpected value: " + s);
-        }
-    }
 
     private Avatar toAvatar(String s) {
         s = s.toUpperCase();
@@ -150,4 +130,7 @@ public class Controlador implements Observer {
     public void update() {
 
     }
+
+
+
 }

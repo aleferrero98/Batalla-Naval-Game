@@ -13,8 +13,6 @@ public class Jugador {
     private Tablero tableroDisparos;
     private DisparoBehavior maneraDeDisparar;
     private HashMap<Disparo, Integer> disparosDisponibles;
-
-
     private HashMap<TipoDeBarco, Integer> barcosDisponibles;
 
     public Jugador(Tablero tableroBarcos, Tablero tableroDisparos) {
@@ -47,7 +45,6 @@ public class Jugador {
      * @param columna
      * @throws InvalidDisparoException
      */
-
     public void disparar(int fila, int columna)throws InvalidDisparoException{
         if(disparoDisponible()){
             this.maneraDeDisparar.disparar(fila, columna, this.tableroDisparos);
@@ -55,6 +52,64 @@ public class Jugador {
         }
         else throw new InvalidDisparoException();
     }
+
+
+    /**
+     *
+     * @return la disponibilidad del tipo de disparo que tiene actualmente
+     */
+    public boolean disparoDisponible(){
+        if(disparosDisponibles.get(maneraDeDisparar.getTipo()) < 1) {
+            return false;
+        }
+        else return true;
+    }
+
+    /**
+     * devuelve true si le quedan barcos de ese tipo por posicionar
+     * @param barco
+     * @return
+     */
+    public boolean barcoParaPonerDisponible(TipoDeBarco barco){
+
+    }
+
+    /**
+     * devuelve true si puede posicionar ese barco en ese lugar en su tablero de barcos
+     * @param barco
+     * @param orientacion
+     * @param fila
+     * @param columna
+     * @return
+     */
+    public boolean puedePosicionarBarco(Barco barco, char orientacion, int fila, int columna){
+        Celda c =tableroBarcos.getCelda(fila,columna);
+        return (barcoParaPonerDisponible(barco.getTipoDeBarco()) && barco.puedePosicionar(tableroBarcos, orientacion, c));
+    }
+
+    /**
+     * devuelve true si no le quedan barcos para colocar
+     * @return
+     */
+    public boolean todosLosBarcosColocados(){
+
+    }
+
+    /**
+     * coloca un barco sobre su tablero
+     * @param barco
+     * @param orientacion
+     * @param fila
+     * @param columna
+     */
+    public void colocarBarco(Barco barco, char orientacion, int fila, int columna){
+        if(puedePosicionarBarco(barco,orientacion,fila,columna)){
+
+        }
+
+    }
+
+
 
     /**
      * resta 1 a la cantidad de disparos disponibles del tipo actual
@@ -64,15 +119,11 @@ public class Jugador {
     }
 
     /**
-     *
-     * @return la disponibilidad del tipo de disparo que tiene actualmente
+     * resta uno a la cantidad de barcos disponibles de ese tipo de barco
+     * @param barco
      */
+    private void gastarBarco(TipoDeBarco barco){
 
-    public boolean disparoDisponible(){
-        if(disparosDisponibles.get(maneraDeDisparar.getTipo()) < 1) {
-            return false;
-        }
-        else return true;
     }
 
 }

@@ -31,6 +31,8 @@ public class JuegoBatallaNaval {
     private EstadoDelJuego estado;
     private AI ai;
 
+    private boolean turnoJugador1;
+
     public JuegoBatallaNaval(EstadoDelJuego estado) {
         this.estado = estado;
         crearTableros();

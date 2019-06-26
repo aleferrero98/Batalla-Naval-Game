@@ -13,5 +13,12 @@ public class Main {
             e.printStackTrace();
         }
         tablero.activarTablero();
+
+            if(true){
+                System.out.println("puto");
+            }
+            else if(true){
+                System.out.println("el que lee");
+            }
     }
 }
