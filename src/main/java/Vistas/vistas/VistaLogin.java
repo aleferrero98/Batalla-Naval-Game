@@ -60,16 +60,28 @@ public class VistaLogin implements ActionListener, Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        if(e.getSource()==radioBotones.get(0)) {
+        if(e.getSource()==radioBotones.get(0) && radioBotones.get(0).isSelected()) {
             System.out.println("radioboton flash");
-        }else if(e.getSource()==radioBotones.get(1)) {
+            radioBotones.get(1).setSelected(false);
+            radioBotones.get(2).setSelected(false);
+            controlador.setAvatarJ1("FLASH");
+        }else if(e.getSource()==radioBotones.get(1) && radioBotones.get(1).isSelected()) {
             System.out.println("radioboton batman");
-        }else if(e.getSource()==radioBotones.get(2)) {
+            radioBotones.get(0).setSelected(false);
+            radioBotones.get(2).setSelected(false);
+            controlador.setAvatarJ1("BATMAN");
+        }else if(e.getSource()==radioBotones.get(2) && radioBotones.get(2).isSelected()) {
             System.out.println("radioboton spiderman");
+            radioBotones.get(0).setSelected(false);
+            radioBotones.get(1).setSelected(false);
+            controlador.setAvatarJ1("SPIDERMAN");
         }else if(e.getSource()==campoTexto) {
+            controlador.setNombreJ1(campoTexto.getText());
             System.out.println("campotexto escrito");
         }else if(e.getSource()==botones.get(0)) {
             System.out.println("boton aceptar");
+            controlador.registrarJugador();
+            controlador.volverInicio();
         }else if(e.getSource()==botones.get(1)) {
             System.out.println("boton cancelar");
             this.controlador.volverInicio();

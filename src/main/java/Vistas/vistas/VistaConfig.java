@@ -61,6 +61,7 @@ public class VistaConfig implements ActionListener, Observer {
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         if(e.getSource()==botones.get(0)) {
+            controlador.mute();
             System.out.println("boton Silenciar juego");
 
         }else if(e.getSource()==botones.get(1)) {

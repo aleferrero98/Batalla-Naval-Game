@@ -105,9 +105,7 @@ public class Modelo implements Observable {
     }
 
     public boolean estaRegistrado() {
-        //return estaRegistradoJ1;
-
-        return true;
+        return estaRegistradoJ1;
     }
 
     public void crearJuego(){

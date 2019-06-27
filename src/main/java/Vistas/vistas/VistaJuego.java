@@ -121,8 +121,13 @@ public class VistaJuego implements ActionListener, Observer {
                 ex.printStackTrace();
             }
 
-        }else if(resultPosicion > -1) {
+        }else if(resultPosicion > -1 && btnPosicion[resultPosicion].isSelected()) {
             System.out.println("apreto boton orientacion: "+"posicion "+ resultPosicion);
+            for(int i=0; i<btnPosicion.length; i++){
+                if(i != resultPosicion){
+                    btnPosicion[i].setSelected(false);
+                }
+            }
             try {
                 controlador.setOrientacionBarco(orientacionEnChar(resultPosicion));
             } catch (Exception ex) {
@@ -136,9 +141,9 @@ public class VistaJuego implements ActionListener, Observer {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
         }else if(e.getSource()==btnPausa) {
             System.out.println("apreto boton de pausa");
+            controlador.pausar();
         }else if(e.getSource()==btnStart){
             System.out.println("apreto boton start");
             controlador.start();

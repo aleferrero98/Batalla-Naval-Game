@@ -24,6 +24,7 @@ public class Controlador implements Observer {
     private char ultimaOrientacion;
     private Avatar avatarJ1;
     private String nombreJ1;
+    private Color colorFondo;
 
 
     public Controlador(Modelo modelo) {
@@ -84,7 +85,10 @@ public class Controlador implements Observer {
         se apaga la vista de login o configuracion
         se enciende la vista de LogIn
          */
-        vistaJuego.hacerVisible(false);
+        if(vistaJuego!=null){
+            vistaJuego.hacerVisible(false);
+        }
+
         vistaLogin.hacerVisible(false);
         vistaConfig.hacerVisible(false);
         vistaInicio.hacerVisible(true);
@@ -109,6 +113,9 @@ public class Controlador implements Observer {
 
             this.vistaJuego = new VistaJuego(this, this.modelo);
             vistaJuego.ubicarAlMedio();
+            if(colorFondo!=null){
+                vistaJuego.cambiarFondo(colorFondo);
+            }
 
             vistaInicio.hacerVisible(false);
             vistaJuego.hacerVisible(true);
@@ -148,9 +155,14 @@ public class Controlador implements Observer {
      */
 
     public void selecColor(Color color){
+        this.colorFondo = color;
         vistaConfig.cambiarFondo(color);
         vistaLogin.cambiarFondo(color);
-        vistaJuego.cambiarFondo(color);
+
+        if(vistaJuego!=null){
+            vistaJuego.cambiarFondo(color);
+        }
+
 
     }
 
