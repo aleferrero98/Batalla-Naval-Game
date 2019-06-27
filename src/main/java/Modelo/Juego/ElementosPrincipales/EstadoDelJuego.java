@@ -1,14 +1,16 @@
 package Modelo.Juego.ElementosPrincipales;
 
 public class EstadoDelJuego {
-    boolean esTurnoDelJ1;
-    boolean esTurnoDelJ2;
-    boolean barcosJ1Posicionados;
-    boolean barcosJ2Posicionados;
-    boolean ganoJ1;
-    boolean ganoJ2;
-    boolean colocandoBarcos;
-    boolean disparando;
+    private boolean esTurnoDelJ1;
+    private boolean esTurnoDelJ2;
+    private boolean barcosJ1Posicionados;
+    private boolean barcosJ2Posicionados;
+    private boolean ganoJ1;
+    private boolean ganoJ2;
+    private boolean colocandoBarcos;
+    private boolean disparando;
+    private static int[][] jugadorN1;
+    private static int[][] jugadorN2;
 
     public EstadoDelJuego(){
         barcosJ1Posicionados=false;
@@ -20,6 +22,38 @@ public class EstadoDelJuego {
         esTurnoDelJ1=false;
         esTurnoDelJ2=false;
     }
+
+    private void crearMatrizJugadorN1(int filas,int columnas) {
+        jugadorN1 = new int[filas][columnas];
+        for(int i=0;i<filas;i++){
+            for(int j=0;j<columnas;j++){
+                jugadorN1[i][j]=0;
+            }
+        }
+    }
+    private void crearMatrizJugadorN2(int filas,int columnas) {
+        jugadorN2 = new int[filas][columnas];
+        for(int i=0;i<filas;i++){
+            for(int j=0;j<columnas;j++){
+                jugadorN2[i][j]=0;
+            }
+        }
+    }
+    public int[][] getMatrizJugadorN1(){
+        return jugadorN1;
+    }
+
+    public int[][] getMatrizJugadorN2(){
+        return jugadorN2;
+    }
+
+    public void setMatrizJugadorN1(int[][] matrizJugadorN1){
+        this.jugadorN1=matrizJugadorN1;
+    }
+    public void setMatrizJugadorN2(int[][] matrizJugadorN2){
+        this.jugadorN2=matrizJugadorN2;
+    }
+
     public boolean isColocandoBarcos() {
         return colocandoBarcos;
     }
