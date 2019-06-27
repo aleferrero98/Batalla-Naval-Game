@@ -37,7 +37,7 @@ public class Modelo implements Observable {
         for(Observer o : observers) o.update();
     }
 
-    public JuegoBatallaNaval getJuego()
+    public JuegoBatallaNaval getJuego(){return null;} //HACER
 
     public void setDisparo(Disparo d) {
         if(juegoBatallaNaval.getJugador1().disparoDisponible(d)){

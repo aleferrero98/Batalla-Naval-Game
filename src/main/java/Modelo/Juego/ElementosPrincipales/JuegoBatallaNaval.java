@@ -80,11 +80,10 @@ public class JuegoBatallaNaval {
 
     private void crearJugadores(){
         jugador1 = new Jugador(tableroBarcosJ1,tableroBarcosJ2);
-        jugador2 = new Jugador(tableroBarcosJ2,tableroBarcosJ1);
+        //jugador2 = new Jugador(tableroBarcosJ2,tableroBarcosJ1);
         jugador1.setManeraDeDisparar(new DisparoComun());
-        jugador2.setManeraDeDisparar(new DisparoComun());
-
-        this.ai = new AI();
+        //jugador2.setManeraDeDisparar(new DisparoComun());
+        this.ai = new AI(tableroBarcosJ2,tableroBarcosJ1);
     }
 
     private void setearDisparosDisponibles() {
