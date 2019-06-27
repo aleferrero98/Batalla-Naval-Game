@@ -14,14 +14,16 @@ import javax.swing.JTextField;
 
 import paneles.PanelLogin;
 
-public class VistaLogin implements ActionListener{
+public class VistaLogin implements ActionListener, Observer{
 		private JFrame frame;
 		private PanelLogin panel;
 		private ArrayList<JButton> botones;
 		private ArrayList<JRadioButton> radioBotones;
 		private JTextField campoTexto;
+		private Controlador controlador;
+		private Modelo modelo;
 		
-	public VistaLogin() {
+	public VistaLogin(Controlador controlador, Modelo modelo) {
 		frame=new JFrame("Inicio");
 	    frame.setResizable(false);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,6 +34,8 @@ public class VistaLogin implements ActionListener{
 		radioBotones=panel.getRadioBotones();
 		campoTexto=panel.getCampoTexto();
 		setObserver();
+		this.controlador = controlador;
+		this.modelo = modelo;
 		
 	}
 	public void hacerVisible(boolean b) {

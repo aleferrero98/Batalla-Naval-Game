@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import paneles.PanelJuego;
 
-public class VistaJuego implements ActionListener{
+public class VistaJuego implements ActionListener, Observer{
 	private JFrame frame;
 	private PanelJuego panel;
 	private JButton[][] btnMatrizLoc;
@@ -24,14 +24,12 @@ public class VistaJuego implements ActionListener{
 	private JRadioButton[] btnPosicion;
 	private JButton[] btnDisparos;
 	private JButton btnPausa;
+	private Controlador controlador;
+	private Modelo modelo;
 	
 	
 	
-public VistaJuego() {
-	
-/*	 contentPane = new JPanel();
-     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-     setContentPane(contentPane);*/
+public VistaJuego(Controlador controlador, Modelo modelo) {
      
 	frame=new JFrame("Juego Batalla Naval");
     frame.setResizable(false);
@@ -48,6 +46,8 @@ public VistaJuego() {
 	btnDisparos = panel.getBotonesDisp();
 	btnPausa = panel.getBotonPausa();
 	setObserver();
+	this.controlador = controlador;
+	this.modelo = modelo;
 	
 }
 public void hacerVisible(boolean b) {
@@ -90,20 +90,60 @@ public void actionPerformed(ActionEvent e) {
 	
 	if(resultMatLoc!=null) {
 		System.out.println("apreto boton matriz local: "+ "fila "+resultMatLoc[0] +" columna "+resultMatLoc[1]);
-		cambiarColorBoton(btnMatrizLoc[resultMatLoc[0]][resultMatLoc[1]]);
+		controlador.ponerBarco(resultMatLoc[0],resultMatLoc[1]);
 	}else if(resultMatVis!=null) {
 		System.out.println("apreto boton matriz visitante: "+ "fila "+resultMatVis[0] +" columna "+resultMatVis[1]);
+		controlador.dispararEnTablero(resultMatVis[0],resultMatVis[1]);
 	}else if(resultBarcos > -1) {
 		System.out.println("apreto boton tipo de barco: "+"posicion "+ resultBarcos);
+		controlador.elegirBarco(tipoBarco(resultBarcos));
+		
 	}else if(resultPosicion > -1) {
 		System.out.println("apreto boton orientacion: "+"posicion "+ resultPosicion);
+		controlador.setOrientacionBarco(orientacionEnChar(resultPosicion));
+		
 	}else if(resultDisparo > -1) {
 		System.out.println("apreto boton tipo de disparo: "+"posicion "+ resultDisparo);
+		controlador.elegirDisparo(tipoDisparo(resultDisparo));
+		
 	}else if(e.getSource()==btnPausa) {
 		System.out.println("apreto boton de pausa");
 	}
 	
 }
+private String tipoBarco(int i) {
+	switch(i) {
+		case 0: return "PORTAAVIONES";
+		case 1: return "SUBMARINO";
+		case 2: return "CANIONERO";
+		case 3: return "DESTRUCTOR";
+		case 4: return "FRAGATA";
+		default:
+			throw new Exception("Error tipo de barco-interfaz");
+	}
+}
+private String tipoDisparo(int i) {
+	switch(i) {
+		case 0: return "COMUN";
+		case 1: return "CRUZ";
+		case 2: return "ALEATORIO";
+		case 3: return "CORTADO";
+		case 4: return "TERMODIRIGIDO";
+		default:
+			throw new Exception("Error tipo de disparo-interfaz");
+	}
+}
+private char orientacionEnChar(int i) {
+	switch(i) {
+	case 0: return 'N';
+	case 1: return 'S';
+	case 2: return 'E';
+	case 3: return 'O';
+	default:
+		throw new Exception("Orientacion mal indicada");
+	}
+}
+
 
 private int[] buscarBotonApretado(ActionEvent e, JButton[][] matrizBotones) {
 	int[] filaColumna = new int[2];
@@ -134,15 +174,71 @@ private int buscarBotonApretado(ActionEvent e, JRadioButton[] arrayBotones) {
 	}
 	return -1;
 }
-public void cambiarColorBoton(JButton boton) {
-	boton.setBackground(new java.awt.Color(255,50,50)); //cambia el color del boton a rojo
+public void ponerBotonRojo(JButton[][] matrizBotones, int fila, int columna) {
+	matrizBotones[fila][columna].setBackground(Color.RED); //cambia el color del boton a rojo
 }
+
+public void ponerBotonAzul(JButton[][] matrizBotones, int fila, int columna) {
+	matrizBotones[fila][columna].setBackground(Color.BLUE); //cambia el color del boton a azul
+}
+
+public void ponerBotonAmarillo(JButton[][] matrizBotones, int fila, int columna) {
+	matrizBotones[fila][columna].setBackground(Color.YELLOW); 
+}
+
+public void cambiarColorBoton(JButton boton, Color color) {
+	boton.setBackground(color);
+}
+	
 
 public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
 	panel.setBackground(color);
 }
 
 public void update() {
+	int matrizDisparos = modelo.getEstadoDelJuego().getMatrizJugadorN2;
+	int matrizBarcos = modelo.getEstadoDelJuego().getMatrizJugadorN1;
+	
+	for(int i=0; i < matrizDisparos.length; i++) {
+		for(int j=0; j < matrizDisparos[0].length; j++) {
+			switch(matrizDisparos[i][j]) {
+				case 0:		//color base, celda activada pero no disparada
+					break;
+				case 1:			//hay barco pero no disparado, no se pinta en la matriz grande
+					break;
+				case 2:
+					cambiarColorBoton(btnMatrizVisit[i][j], Color.YELLOW);
+				//	ponerBotonAmarillo(btnMatrizVisit,i,j);	//disparo agua
+					break;
+				case 3:
+					cambiarColorBoton(btnMatrizVisit[i][j], Color.RED);  //disparo en  barco
+				//	ponerBotonRojo(btnMatrizVisit,i,j);	
+					break;
+				default:
+					throw new Exception("numero invalido");
+					
+			switch(matrizBarcos[i][j]) {
+				case 0:		//color base, celda activada pero no disparada
+					break;
+				case 1:			//hay barco pero no disparado, no se pinta en la matriz grande
+					cambiarColorBoton(btnMatrizLoc[i][j], Color.BLUE);
+				//	ponerBotonAzul(btnMatrizLoc,i,j);
+					break;
+				case 2:
+					cambiarColorBoton(btnMatrizLoc[i][j], Color.YELLOW);
+				//	ponerBotonAmarillo(btnMatrizLoc,i,j);	//disparo agua
+					break;
+				case 3:
+					cambiarColorBoton(btnMatrizLoc[i][j], Color.RED);
+					//ponerBotonRojo(btnMatrizLoc,i,j);	//disparo en  barco
+					break;
+				default:
+					throw new Exception("numero invalido");
+			
+			}
+			
+		}
+	}
 	
 }
 }

@@ -21,12 +21,14 @@ import javax.swing.WindowConstants;
 import paneles.PanelConfig;
 
 
-public class VistaConfig implements ActionListener{
+public class VistaConfig implements ActionListener, Observer{
 		private JFrame frame;
 		private PanelConfig panel;
 		private ArrayList<JButton> botones;
+		private Controlador controlador;
+		private Modelo modelo;
 		
-	public VistaConfig() {
+	public VistaConfig(Controlador controlador, Modelo modelo) {
 		frame=new JFrame("Configuración - Ayuda");
 	    frame.setResizable(false);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +37,8 @@ public class VistaConfig implements ActionListener{
 		frame.add(panel,BorderLayout.CENTER);
 		botones=panel.getBotones();
 		setObserver();
-		
+		this.controlador = controlador;
+		this.modelo = modelo;
 	}
 	public void hacerVisible(boolean b) {
 		frame.setVisible(b);
@@ -54,26 +57,34 @@ public class VistaConfig implements ActionListener{
 		// TODO Auto-generated method stub
 		 if(e.getSource()==botones.get(0)) {
 			System.out.println("boton Silenciar juego");
+			
 		}else if(e.getSource()==botones.get(1)) {
 			System.out.println("boton Instrucciones");
 			mostrarInstrucciones();
+			
 		}else if(e.getSource()==botones.get(2)) {
 			System.out.println("color gris");
-			cambiarFondo(Color.GRAY);
+			this.controlador.selecColor(Color.GRAY);
+			
 		}else if(e.getSource()==botones.get(3)) {
 				System.out.println("color verde");
-				cambiarFondo(Color.GREEN);
+			this.controlador.selecColor(Color.GREEN);
+			
 		}else if(e.getSource()==botones.get(4)) {
 				System.out.println("color amarillo");
-				cambiarFondo(Color.YELLOW);
+			this.controlador.selecColor(Color.YELLOW);
+			
 		}else if(e.getSource()==botones.get(5)) {
 			System.out.println("color naranja");
-			cambiarFondo(Color.ORANGE);
+			this.controlador.selecColor(Color.ORANGE);
+			
 		}else if(e.getSource()==botones.get(6)) {
 			System.out.println("color blanco");
-			cambiarFondo(Color.WHITE);
+			this.controlador.selecColor(Color.WHITE);
+			
 		}else if(e.getSource()==botones.get(7)) {
 			System.out.println("boton Volver a inicio");
+			this.controlador.volverInicio();
 		}
 	}
 	

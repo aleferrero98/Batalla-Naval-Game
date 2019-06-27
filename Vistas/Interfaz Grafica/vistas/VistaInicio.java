@@ -11,12 +11,14 @@ import javax.swing.JFrame;
 
 import paneles.PanelInicio;
 
-public class VistaInicio implements ActionListener{
+public class VistaInicio implements ActionListener, Observer{
 		private JFrame frame;
 		private PanelInicio panel;
 		private ArrayList<JButton> botones;
+		private Controlador controlador;
+		private Modelo modelo;
 		
-	public VistaInicio() {
+	public VistaInicio(Controlador controlador, Modelo modelo) {
 		frame=new JFrame("Inicio");
 	    frame.setResizable(false);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,6 +27,9 @@ public class VistaInicio implements ActionListener{
 		frame.add(panel,BorderLayout.CENTER);
 		botones=panel.getBotones();
 		setObserver();
+		this.controlador = controlador;
+		this.modelo = modelo;
+		
 		
 	}
 	public void hacerVisible(boolean b) {
@@ -46,10 +51,16 @@ public class VistaInicio implements ActionListener{
 			System.exit(0);
 		}else if(e.getSource()==botones.get(1)) {
 			System.out.println("boton Iniciar Partida");
+			this.controlador.irJuego();
+			
 		}else if(e.getSource()==botones.get(2)) {
 			System.out.println("boton Registrarse");
+			this.controlador.irLogIn();
+			
 		}else if(e.getSource()==botones.get(3)) {
 			System.out.println("boton Configuracion-Ayuda");
+			this.controlador.irConfigAyuda();
+			
 	}
 		
 	}
