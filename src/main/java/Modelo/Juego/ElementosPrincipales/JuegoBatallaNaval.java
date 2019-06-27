@@ -210,7 +210,7 @@ public class JuegoBatallaNaval {
     }
 
     public void setBarcosMaquina(){
-        this.ai.colocarTodosBarcos();
+       // this.ai.colocarTodosBarcos();
     }
 
 

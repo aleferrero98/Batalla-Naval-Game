@@ -31,12 +31,12 @@ public class PanelLogin extends JPanel {
         JLabel lblEligeTuAvatar = new JLabel("Elige tu avatar");
         JLabel lblNombre = new JLabel("Nombre:");
 
-       // JPanel avatar1 = new PanelAvatar(new ImageIcon(getClass().getResource("/imagenesAvatar/flash.jpg")));
-       // JPanel avatar2 = new PanelAvatar(new ImageIcon(getClass().getResource("/imagenesAvatar/batman.jpg")));
-        JPanel avatar3 = new PanelAvatar(new ImageIcon(("Vistas/imagenesAvatar/spiderman.jpg")));
+        JPanel avatar1 = new PanelAvatar(new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\flash.jpg"));
+        JPanel avatar2 = new PanelAvatar(new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
+        JPanel avatar3 = new PanelAvatar(new ImageIcon(("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg")));
 
-        JPanel avatar1 = new JPanel();
-        JPanel avatar2 = new JPanel();
+        //JPanel avatar1 = new JPanel();
+        //JPanel avatar2 = new JPanel();
        // JPanel avatar3 = new JPanel();
 
         txtCampotexto = new JTextField();

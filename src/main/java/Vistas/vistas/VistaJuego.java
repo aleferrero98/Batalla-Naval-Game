@@ -30,6 +30,8 @@ public class VistaJuego implements ActionListener, Observer {
     private JRadioButton[] btnPosicion;
     private JButton[] btnDisparos;
     private JButton btnPausa;
+    private JButton btnStart;
+    private JButton btnVolverInicio;
     private Controlador controlador;
     private Modelo modelo;
 
@@ -49,6 +51,8 @@ public class VistaJuego implements ActionListener, Observer {
         btnPosicion = panel.getBotonesPosicion();
         btnDisparos = panel.getBotonesDisp();
         btnPausa = panel.getBotonPausa();
+        btnStart = panel.getBotonStart();
+        btnVolverInicio = panel.getVolverInicio();
         setObserver();
         this.controlador = controlador;
         this.modelo = modelo;
@@ -82,6 +86,8 @@ public class VistaJuego implements ActionListener, Observer {
             btnDisparos[i].addActionListener(this);
         }
         btnPausa.addActionListener(this);
+        btnStart.addActionListener(this);
+        btnVolverInicio.addActionListener(this);
     }
 
     @Override
@@ -133,6 +139,12 @@ public class VistaJuego implements ActionListener, Observer {
 
         }else if(e.getSource()==btnPausa) {
             System.out.println("apreto boton de pausa");
+        }else if(e.getSource()==btnStart){
+            System.out.println("apreto boton start");
+            controlador.start();
+        }else if(e.getSource()==btnVolverInicio){
+            System.out.println("apreto boton volver a inicio");
+            controlador.volverInicio();
         }
 
     }
@@ -199,17 +211,6 @@ public class VistaJuego implements ActionListener, Observer {
         }
         return -1;
     }
-    public void ponerBotonRojo(JButton[][] matrizBotones, int fila, int columna) {
-        matrizBotones[fila][columna].setBackground(Color.RED); //cambia el color del boton a rojo
-    }
-
-    public void ponerBotonAzul(JButton[][] matrizBotones, int fila, int columna) {
-        matrizBotones[fila][columna].setBackground(Color.BLUE); //cambia el color del boton a azul
-    }
-
-    public void ponerBotonAmarillo(JButton[][] matrizBotones, int fila, int columna) {
-        matrizBotones[fila][columna].setBackground(Color.YELLOW);
-    }
 
     public void cambiarColorBoton(JButton boton, Color color) {
         boton.setBackground(color);
@@ -233,12 +234,10 @@ public class VistaJuego implements ActionListener, Observer {
                         case 1:            //hay barco pero no disparado, no se pinta en la matriz grande
                             break;
                         case 2:
-                            cambiarColorBoton(btnMatrizVisit[i][j], Color.YELLOW);
-                            //	ponerBotonAmarillo(btnMatrizVisit,i,j);	//disparo agua
+                            cambiarColorBoton(btnMatrizVisit[i][j], Color.YELLOW);  //disparo agua
                             break;
                         case 3:
                             cambiarColorBoton(btnMatrizVisit[i][j], Color.RED);  //disparo en  barco
-                            //	ponerBotonRojo(btnMatrizVisit,i,j);
                             break;
                         default:
                             throw new Exception("numero invalido");
@@ -250,15 +249,12 @@ public class VistaJuego implements ActionListener, Observer {
                         break;
                     case 1:			//hay barco pero no disparado, no se pinta en la matriz grande
                         cambiarColorBoton(btnMatrizLoc[i][j], Color.BLUE);
-                        //	ponerBotonAzul(btnMatrizLoc,i,j);
                         break;
                     case 2:
-                        cambiarColorBoton(btnMatrizLoc[i][j], Color.YELLOW);
-                        //	ponerBotonAmarillo(btnMatrizLoc,i,j);	//disparo agua
+                        cambiarColorBoton(btnMatrizLoc[i][j], Color.YELLOW); //disparo agua
                         break;
                     case 3:
-                        cambiarColorBoton(btnMatrizLoc[i][j], Color.RED);
-                        //ponerBotonRojo(btnMatrizLoc,i,j);	//disparo en  barco
+                        cambiarColorBoton(btnMatrizLoc[i][j], Color.RED); //disparo en  barco
                         break;
                     default:
                         throw new Exception("numero invalido");

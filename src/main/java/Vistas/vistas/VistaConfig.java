@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -22,6 +21,7 @@ import Controlador.Controlador;
 import Modelo.Modelo;
 import Modelo.Observer;
 import Vistas.paneles.PanelConfig;
+//import Vistas.instrucciones.instrucciones.txt;
 
 
 

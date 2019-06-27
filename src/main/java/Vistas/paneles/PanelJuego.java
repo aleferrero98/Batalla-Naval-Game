@@ -13,6 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 
 public class PanelJuego extends JPanel {
@@ -23,6 +24,8 @@ public class PanelJuego extends JPanel {
     private PanelMatriz mLocal;
     private PanelMatriz mVisit;
     private JButton btnPausa;
+    private JButton btnStart;
+    private JButton btnVolverAInicio;
 
     /**
      * Create the panel.
@@ -83,6 +86,12 @@ public class PanelJuego extends JPanel {
         btnDisparos[3] = btnDCortado;
         btnDisparos[4] = btnDTermodirigido;
 
+        btnStart = new JButton("Start");
+
+        JLabel lblElegirOrientacion = new JLabel("Elegir orientacion:");
+
+        btnVolverAInicio = new JButton("Volver a inicio");
+
 
 
         GroupLayout groupLayout = new GroupLayout(this);
@@ -93,18 +102,17 @@ public class PanelJuego extends JPanel {
                                         .addComponent(mLocal, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(groupLayout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(btnPortaaviones))
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addContainerGap()
                                                 .addComponent(btnFragatas))
                                         .addGroup(groupLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                         .addComponent(btnSubmarino)
                                                         .addComponent(btnCaonero)
-                                                        .addComponent(btnDestructores))
+                                                        .addComponent(btnDestructores)
+                                                        .addComponent(btnPortaaviones))
                                                 .addGap(91)
                                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                        .addComponent(lblElegirOrientacion)
                                                         .addComponent(rdbtnOeste)
                                                         .addComponent(rdbtnEste)
                                                         .addComponent(rdbtnSur)
@@ -116,7 +124,9 @@ public class PanelJuego extends JPanel {
                                         .addComponent(btnDCortado)
                                         .addComponent(btnDRandom)
                                         .addComponent(btnDCruz)
-                                        .addComponent(btnDComun))
+                                        .addComponent(btnDComun)
+                                        .addComponent(btnStart)
+                                        .addComponent(btnVolverAInicio))
                                 .addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addComponent(mVisit, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
         );
@@ -128,6 +138,10 @@ public class PanelJuego extends JPanel {
                                         .addGroup(groupLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(btnPausa)
+                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                .addComponent(btnStart)
+                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                .addComponent(btnVolverAInicio)
                                                 .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(btnDComun)
                                                 .addPreferredGap(ComponentPlacement.UNRELATED)
@@ -152,7 +166,9 @@ public class PanelJuego extends JPanel {
                                                 .addPreferredGap(ComponentPlacement.UNRELATED)
                                                 .addComponent(btnFragatas))
                                         .addGroup(groupLayout.createSequentialGroup()
-                                                .addGap(35)
+                                                .addGap(14)
+                                                .addComponent(lblElegirOrientacion)
+                                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                                 .addComponent(rdbtnNorte)
                                                 .addPreferredGap(ComponentPlacement.UNRELATED)
                                                 .addComponent(rdbtnSur)
@@ -184,5 +200,13 @@ public class PanelJuego extends JPanel {
     public JButton getBotonPausa(){
         return btnPausa;
     }
+    public JButton getBotonStart(){
+        return btnStart;
+    }
+    public JButton getVolverInicio() {
+        return btnVolverAInicio;
+    }
 }
+
+
 
