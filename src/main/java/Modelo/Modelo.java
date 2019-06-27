@@ -5,6 +5,7 @@ import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.ElementosPrincipales.EstadoDelJuego;
 import Modelo.Juego.ElementosPrincipales.JuegoBatallaNaval;
+import Modelo.Juego.ElementosPrincipales.Jugador;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.Juego.StrategyDisparo.DisparoBehavior;
@@ -57,6 +58,7 @@ public class Modelo implements Observable {
     }
 
     public void dispararEn(int fila, int columna) throws InvalidDisparoException {
+        Jugador j1 = juegoBatallaNaval.getJugador1();
         juegoBatallaNaval.getJugador1().disparar(fila,columna);
         juegoBatallaNaval.actualizarMatrizJ2();
         notifyObservers();
@@ -78,6 +80,9 @@ public class Modelo implements Observable {
     public void setBarcoActual(char orientacion, int fila, int columna) throws InvalidPosicionBarco {
         juegoBatallaNaval.colocarBarcoJ1(orientacion,fila,columna);
         juegoBatallaNaval.actualizarMatrizJ1();
+        if(juegoBatallaNaval.getJugador1().todosLosBarcosColocados()){
+            estadoDelJuego.setBarcosJ1Posicionados(true);
+        }
         notifyObservers();
     }
 
@@ -100,18 +105,27 @@ public class Modelo implements Observable {
     }
 
     public boolean estaRegistrado() {
-        return estaRegistradoJ1;
+        //return estaRegistradoJ1;
+
+        return true;
     }
 
-    public void crearJuego() {
+    public void crearJuego(){
         this.estadoDelJuego = new EstadoDelJuego();
         this.juegoBatallaNaval = new JuegoBatallaNaval(estadoDelJuego);
         notifyObservers();
-        this.juegoBatallaNaval.setBarcosMaquina();
+        try {
+            this.juegoBatallaNaval.setBarcosMaquina();
+        }catch(InvalidPosicionBarco e){
+            System.out.println("ERROR: NO SE PUEDEN SETEAR BARCOS DE LA MAQUINA");
+        }
+        notifyObservers();
     }
 
     public boolean estaListoParaJugar() {
         return (this.estadoDelJuego.todosPosicionados());
+        //return true;
+
     }
 
     /**
@@ -121,6 +135,7 @@ public class Modelo implements Observable {
      */
     public void runJuego() {
         estadoDelJuego.setEsTurnoDelJ1(true);
+        juegoBatallaNaval.habilitarDisparos();
         notifyObservers();
     }
 

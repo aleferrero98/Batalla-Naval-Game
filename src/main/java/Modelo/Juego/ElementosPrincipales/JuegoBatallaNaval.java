@@ -41,13 +41,15 @@ public class JuegoBatallaNaval {
     private boolean turnoJugador1;
 
     public JuegoBatallaNaval(EstadoDelJuego estado) {
-        this.estado = estado;
-        this.estado.crearMatrizJugadorN1(TABLERO_SIZE,TABLERO_SIZE);
         this.asttillero = new AstilleroMilitar();
         crearTableros();
         crearJugadores();
         setearDisparosDisponibles();
         setearBarcosDisponibles();
+
+        this.estado = estado;
+        this.estado.crearMatrizJugadorN1(TABLERO_SIZE,TABLERO_SIZE);
+        this.estado.crearMatrizJugadorN2(TABLERO_SIZE,TABLERO_SIZE);
     }
 
     public Jugador getJugador1() {
@@ -205,12 +207,15 @@ public class JuegoBatallaNaval {
 
 
     public void disparaMaquina() throws InvalidDisparoException {
-        this.ai.disparoAleatorio();
+        this.jugador2.disparoAleatorio();
         actualizarMatrizJ1();
     }
 
-    public void setBarcosMaquina(){
-       // this.ai.colocarTodosBarcos();
+    public void setBarcosMaquina() throws InvalidPosicionBarco {
+        this.jugador2.colocarTodosBarcos();
+        //habria que preguntar si el jugador 2 efectivamente puso todos sus barcos
+        //por ahora suponemos que si
+        this.estado.setBarcosJ2Posicionados(true);
     }
 
 

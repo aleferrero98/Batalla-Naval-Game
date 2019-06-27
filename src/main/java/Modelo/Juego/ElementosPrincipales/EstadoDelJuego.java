@@ -21,6 +21,8 @@ public class EstadoDelJuego {
         ganoJ2=false;
         esTurnoDelJ1=false;
         esTurnoDelJ2=false;
+
+
     }
 
     public void crearMatrizJugadorN1(int filas,int columnas) {

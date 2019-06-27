@@ -1,4 +1,4 @@
-/*
+
 package Controlador;
 
 import Modelo.Excepciones.InvalidDisparoException;
@@ -29,11 +29,11 @@ public class Controlador implements Observer {
         vistaInicio = new VistaInicio(this, modelo);
         vistaConfig = new VistaConfig(this, modelo);
         vistaLogin = new VistaLogin(this, modelo);
-        vistaJuego = new VistaJuego(this, modelo);
+        //vistaJuego = new VistaJuego(this, modelo);
         vistaInicio.ubicarAlMedio();
         vistaConfig.ubicarAlMedio();
         vistaLogin.ubicarAlMedio();
-        vistaJuego.ubicarAlMedio();
+        //vistaJuego.ubicarAlMedio();
 
         vistaInicio.hacerVisible(true);
     }
@@ -67,51 +67,53 @@ public class Controlador implements Observer {
         modelo.setBarcoActual(this.ultimaOrientacion,fila,columna);
     }
     public void irLogIn(){
-        */
-/*
+        /*
         se apaga la vista de inicio
         se enciende la vista de LogIn
-         *//*
+         */
 
         vistaInicio.hacerVisible(false);
         vistaLogin.hacerVisible(true);
 
     }
     public void volverInicio(){
-        */
-/*
+
+        /*
         se apaga la vista de login o configuracion
         se enciende la vista de LogIn
-         *//*
-
+         */
+        vistaJuego.hacerVisible(false);
         vistaLogin.hacerVisible(false);
         vistaConfig.hacerVisible(false);
         vistaInicio.hacerVisible(true);
     }
     public void irConfigAyuda(){
-        */
-/*
+
+        /*
         se apaga la vista de inicio
         se enciende la vista de configuracion y ayuda
-         *//*
+         */
 
         vistaInicio.hacerVisible(false);
         vistaConfig.hacerVisible(true);
     }
     public void irJuego(){
-        //if(modelo.estaRegistrado()){   //PARA EL JUEGO COMPLETO SE DEBE AGREGAR ESTE IF
-            */
-/*
+        if(modelo.estaRegistrado()){   //PARA EL JUEGO COMPLETO SE DEBE AGREGAR ESTE IF
+
+            /*
             se apaga la vista de inicio
             se enciende la vista de juego
-             *//*
+             */
+
+            this.vistaJuego = new VistaJuego(this, this.modelo);
+            vistaJuego.ubicarAlMedio();
 
             vistaInicio.hacerVisible(false);
             vistaJuego.hacerVisible(true);
             modelo.crearJuego();
             modelo.puedePonerBarcos(true);
             modelo.puedeDisparar(false);
-        //}
+        }
     }
 
     public void start(){
@@ -125,14 +127,15 @@ public class Controlador implements Observer {
     public void registrarJugador(String nombre, String avatar){
         if(nombre != null && avatar !=null) {
             modelo.registrarJugador1(toAvatar(avatar), nombre);
+
         }
     }
 
-    */
-/**
+
+    /**
      * setear el mismo color a las vistas menos la de inicio
      * @param color
-     *//*
+     */
 
     public void selecColor(Color color){
         vistaConfig.cambiarFondo(color);
@@ -190,4 +193,4 @@ public class Controlador implements Observer {
 
     }
 
-}*/
+}
