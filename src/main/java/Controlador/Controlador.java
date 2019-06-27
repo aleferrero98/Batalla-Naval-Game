@@ -80,7 +80,7 @@ public class Controlador implements Observer {
         vistaConfig.hacerVisible(true);
     }
     public void irJuego(){
-        if(modelo.estaRegistrado()){
+        //if(modelo.estaRegistrado()){   //PARA EL JUEGO COMPLETO SE DEBE AGREGAR ESTE IF
             /*
             se apaga la vista de inicio
             se enciende la vista de juego
@@ -90,7 +90,7 @@ public class Controlador implements Observer {
             modelo.crearJuego();
             modelo.puedePonerBarcos(true);
             modelo.puedeDisparar(false);
-        }
+        //}
     }
 
     public void start(){

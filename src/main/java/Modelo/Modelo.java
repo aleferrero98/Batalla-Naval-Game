@@ -114,8 +114,10 @@ public class Modelo implements Observable {
     public void runJuego() {
         estadoDelJuego.setEsTurnoDelJ1(true);
         notifyObservers();
-
     }
 
+    public EstadoDelJuego getEstadoDelJuego(){
+        return this.estadoDelJuego;
+    }
 
 }

@@ -9,8 +9,8 @@ public class EstadoDelJuego {
     private boolean ganoJ2;
     private boolean colocandoBarcos;
     private boolean disparando;
-    private static int[][] jugadorN1;
-    private static int[][] jugadorN2;
+    private static int[][] matrizBarcosJugador1;
+    private static int[][] matrizBarcosJugador2;
 
     public EstadoDelJuego(){
         barcosJ1Posicionados=false;
@@ -24,34 +24,34 @@ public class EstadoDelJuego {
     }
 
     public void crearMatrizJugadorN1(int filas,int columnas) {
-        jugadorN1 = new int[filas][columnas];
+        matrizBarcosJugador1 = new int[filas][columnas];
         for(int i=0;i<filas;i++){
             for(int j=0;j<columnas;j++){
-                jugadorN1[i][j]=0;
+                matrizBarcosJugador1[i][j]=0;
             }
         }
     }
     public void crearMatrizJugadorN2(int filas,int columnas) {
-        jugadorN2 = new int[filas][columnas];
+        matrizBarcosJugador2 = new int[filas][columnas];
         for(int i=0;i<filas;i++){
             for(int j=0;j<columnas;j++){
-                jugadorN2[i][j]=0;
+                matrizBarcosJugador2[i][j]=0;
             }
         }
     }
     public int[][] getMatrizJugadorN1(){
-        return jugadorN1;
+        return matrizBarcosJugador1;
     }
 
     public int[][] getMatrizJugadorN2(){
-        return jugadorN2;
+        return matrizBarcosJugador2;
     }
 
     public void setMatrizJugadorN1(int[][] matrizJugadorN1){
-        this.jugadorN1=matrizJugadorN1;
+        this.matrizBarcosJugador1=matrizJugadorN1;
     }
     public void setMatrizJugadorN2(int[][] matrizJugadorN2){
-        this.jugadorN2=matrizJugadorN2;
+        this.matrizBarcosJugador2=matrizJugadorN2;
     }
 
     public boolean isColocandoBarcos() {
