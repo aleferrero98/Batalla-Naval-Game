@@ -33,6 +33,14 @@ public class Jugador {
         this.barcosDisponibles = barcosDisponibles;
     }
 
+    public Tablero getTableroBarcos() {
+        return tableroBarcos;
+    }
+
+    public Tablero getTableroDisparos() {
+        return tableroDisparos;
+    }
+
     /**
      * cambia el algoritmo de disparo
      * @param maneraDeDisparar

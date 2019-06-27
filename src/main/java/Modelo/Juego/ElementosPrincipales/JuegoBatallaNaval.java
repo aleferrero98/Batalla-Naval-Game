@@ -156,7 +156,12 @@ public class JuegoBatallaNaval {
 
     public void habilitarDisparos(){
         estado.setDisparando(true);
-        jugador1.
+        jugador1.getTableroBarcos().activarTablero();
+        jugador2.getTableroBarcos().activarTablero();
+        /* Deberia bastar con lo de arriba
+        jugador1.getTableroDisparos().activarTablero();
+        jugador2.getTableroDisparos().activarTablero();
+         */
     }
 
     public void desHabilitarDisparos(){
