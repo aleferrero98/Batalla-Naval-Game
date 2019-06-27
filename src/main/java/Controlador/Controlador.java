@@ -1,3 +1,4 @@
+/*
 package Controlador;
 
 import Modelo.Excepciones.InvalidDisparoException;
@@ -54,37 +55,45 @@ public class Controlador implements Observer {
         modelo.setBarcoActual(orientacion,fila,columna);
     }
     public void irLogIn(){
-        /*
+        */
+/*
         se apaga la vista de inicio
         se enciende la vista de LogIn
-         */
+         *//*
+
         vistaInicio.hacerVisible(false);
         vistaLogin.hacerVisible(true);
 
     }
     public void volverInicio(){
-        /*
+        */
+/*
         se apaga la vista de login o configuracion
         se enciende la vista de LogIn
-         */
+         *//*
+
         vistaLogin.hacerVisible(false);
         vistaConfig.hacerVisible(false);
         vistaInicio.hacerVisible(true);
     }
     public void irConfigAyuda(){
-        /*
+        */
+/*
         se apaga la vista de inicio
         se enciende la vista de configuracion y ayuda
-         */
+         *//*
+
         vistaInicio.hacerVisible(false);
         vistaConfig.hacerVisible(true);
     }
     public void irJuego(){
         //if(modelo.estaRegistrado()){   //PARA EL JUEGO COMPLETO SE DEBE AGREGAR ESTE IF
-            /*
+            */
+/*
             se apaga la vista de inicio
             se enciende la vista de juego
-             */
+             *//*
+
             vistaInicio.hacerVisible(false);
             vistaJuego.hacerVisible(true);
             modelo.crearJuego();
@@ -107,10 +116,12 @@ public class Controlador implements Observer {
         }
     }
 
-    /**
+    */
+/**
      * setear el mismo color a las vistas menos la de inicio
      * @param color
-     */
+     *//*
+
     public void selecColor(Color color){
         vistaConfig.cambiarFondo(color);
         vistaLogin.cambiarFondo(color);
@@ -165,4 +176,4 @@ public class Controlador implements Observer {
 
     }
 
-}
+}*/

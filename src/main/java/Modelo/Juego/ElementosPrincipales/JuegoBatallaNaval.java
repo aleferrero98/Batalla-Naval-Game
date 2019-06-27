@@ -30,12 +30,12 @@ public class JuegoBatallaNaval {
     private final int CANT_B_SUBMARINOS = 1;
 
     private Jugador jugador1; //usuario
-    private Jugador jugador2; //maquina
+    //private Jugador jugador2; //maquina
     private Tablero tableroBarcosJ1;
     private Tablero tableroBarcosJ2;
     private FabricaDeBarcos asttillero;
     private EstadoDelJuego estado;
-    private AI ai;
+    private AI jugador2;
 
     private boolean turnoJugador1;
 
@@ -53,7 +53,7 @@ public class JuegoBatallaNaval {
         return jugador1;
     }
 
-    public Jugador getJugador2() {
+    public AI getJugador2() {
         return jugador2;
     }
 
@@ -83,7 +83,7 @@ public class JuegoBatallaNaval {
         //jugador2 = new Jugador(tableroBarcosJ2,tableroBarcosJ1);
         jugador1.setManeraDeDisparar(new DisparoComun());
         //jugador2.setManeraDeDisparar(new DisparoComun());
-        this.ai = new AI(tableroBarcosJ2,tableroBarcosJ1);
+        this.jugador2 = new AI(tableroBarcosJ2,tableroBarcosJ1);
     }
 
     private void setearDisparosDisponibles() {

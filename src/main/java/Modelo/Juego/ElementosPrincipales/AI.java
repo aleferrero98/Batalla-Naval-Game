@@ -14,6 +14,7 @@ public class AI {
     private HashMap<Disparo, Integer> disparosDisponibles;
     private HashMap<TipoDeBarco, Integer> barcosDisponibles;
     private AstilleroMilitar creadorBarcos;
+    private Disparo disparoSeleccionado;
 
     public AI(Tablero tableroBarcos, Tablero tableroDisparos) {
         this.tableroBarcos = tableroBarcos;
@@ -59,44 +60,46 @@ public class AI {
         else return true;
     }
     private Disparo elegirDisparoAleatorio() {
-        Disparo disparoAleatorio;
         int eleccion = (int) (Math.random() * disparosDisponibles.size()) + 1;
         switch (eleccion) {
             case 1:
-                disparoAleatorio = Disparo.COMUN;
-                return disparoAleatorio;
+                disparoSeleccionado = Disparo.COMUN;
+                return disparoSeleccionado;
             case 2:
-                disparoAleatorio = Disparo.CORTADO;
-                return disparoAleatorio;
+                disparoSeleccionado = Disparo.CORTADO;
+                return disparoSeleccionado;
             case 3:
-                disparoAleatorio = Disparo.ALEATORIO;
-                return disparoAleatorio;
+                disparoSeleccionado = Disparo.ALEATORIO;
+                return disparoSeleccionado;
             case 4:
-                disparoAleatorio = Disparo.CRUZ;
-                return disparoAleatorio;
+                disparoSeleccionado = Disparo.CRUZ;
+                return disparoSeleccionado;
             case 5:
-                disparoAleatorio = Disparo.TERMODIRIGIDO;
-                return disparoAleatorio;
+                disparoSeleccionado = Disparo.TERMODIRIGIDO;
+                return disparoSeleccionado;
         }
         return null;
     }
     public void actualizarDisparosDisponibles(Disparo disparoElegido){
         disparosDisponibles.put(disparoElegido, disparosDisponibles.get(disparoElegido) -1);
     }
+    public void colocarTodosBarcos()throws InvalidPosicionBarco{
+        while(sePuedeUbicarBarcos()){
+            barcosAleatorio();
+        }
+    }
 
     public void barcosAleatorio() throws InvalidPosicionBarco {
-        if(sePuedeUbicarBarcos()){
-            this.barcoSeleccionado = elegirBarcoAleatorio();
-            int columnaAleatoria = (int) (Math.random() * tableroBarcos.getColumnas());
-            int filaAleatoria = (int) (Math.random() * tableroBarcos.getFilas());
-            char orientacionAleatoria = elegirOrientacionAleatoria();
-            if(barcoDisponible(this.barcoSeleccionado) && this.barcoSeleccionado.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
-                    tableroBarcos.setBarco(this.barcoSeleccionado,orientacionAleatoria,filaAleatoria,columnaAleatoria);
-                    actualizarBarcosDisponibles(this.barcoSeleccionado);
-            }
-            else{
-                barcosAleatorio();  //Llamada Recursiva
-            }
+        this.barcoSeleccionado = elegirBarcoAleatorio();
+        int columnaAleatoria = (int) (Math.random() * tableroBarcos.getColumnas());
+        int filaAleatoria = (int) (Math.random() * tableroBarcos.getFilas());
+        char orientacionAleatoria = elegirOrientacionAleatoria();
+        if(barcoDisponible(this.barcoSeleccionado) && this.barcoSeleccionado.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
+            tableroBarcos.setBarco(this.barcoSeleccionado,orientacionAleatoria,filaAleatoria,columnaAleatoria);
+            actualizarBarcosDisponibles(this.barcoSeleccionado);
+        }
+        else{
+            barcosAleatorio();  //Llamada Recursiva
         }
     }
 
@@ -133,7 +136,7 @@ public class AI {
     }
     private char elegirOrientacionAleatoria(){
         char[] orientaciones = {'N','S','E','O'};
-        int eleccionOrientacion = (int) (Math.random() *orientaciones.length) + 1;
+        int eleccionOrientacion = (int) (Math.random() *orientaciones.length);
         return orientaciones[eleccionOrientacion];
     }
     private boolean barcoDisponible(Barco barcoSeleccionado){
@@ -145,6 +148,22 @@ public class AI {
     private void actualizarBarcosDisponibles(Barco elegido){
         barcosDisponibles.put(elegido.getTipoDeBarco(),(barcosDisponibles.get(elegido.getTipoDeBarco())-1));
     }
+    public Tablero getTableroBarcos() {
+        return tableroBarcos;
+    }
+
+    public Tablero getTableroDisparos() {
+        return tableroDisparos;
+    }
+
+    public HashMap<Disparo, Integer> getDisparosDisponibles() {
+        return disparosDisponibles;
+    }
+
+    public HashMap<TipoDeBarco, Integer> getBarcosDisponibles() {
+        return barcosDisponibles;
+    }
+
 
 }
 

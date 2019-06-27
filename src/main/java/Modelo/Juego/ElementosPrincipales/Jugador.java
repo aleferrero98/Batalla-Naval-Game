@@ -1,6 +1,5 @@
 package Modelo.Juego.ElementosPrincipales;
 
-import Controlador.Avatar;
 import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
@@ -32,7 +31,6 @@ public class Jugador {
     public void setBarcosDisponibles(HashMap<TipoDeBarco, Integer> barcosDisponibles) {
         this.barcosDisponibles = barcosDisponibles;
     }
-
     public Tablero getTableroBarcos() {
         return tableroBarcos;
     }
