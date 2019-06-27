@@ -11,7 +11,6 @@ import java.util.HashMap;
 public class AI {
     private Tablero tableroBarcos;
     private Tablero tableroDisparos;
-    private DisparoBehavior maneraDeDisparar;
     private Barco barcoSeleccionado;
     private HashMap<Disparo, Integer> disparosDisponibles;
     private HashMap<TipoDeBarco, Integer> barcosDisponibles;
@@ -76,13 +75,13 @@ public class AI {
     }
 
     public void barcosAleatorio() throws InvalidPosicionBarco {
-        Barco eleccion = elegirBarcoAleatorio();
+        this.barcoSeleccionado = elegirBarcoAleatorio();
         int columnaAleatoria = (int) (Math.random() * tableroBarcos.getColumnas());
         int filaAleatoria = (int) (Math.random() * tableroBarcos.getFilas());
         char orientacionAleatoria = elegirOrientacionAleatoria();
-        if(barcoDisponible(eleccion) && eleccion.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
-                tableroBarcos.setBarco(eleccion,orientacionAleatoria,filaAleatoria,columnaAleatoria);
-                actualizarBarcosDisponibles(eleccion);
+        if(barcoDisponible(this.barcoSeleccionado) && this.barcoSeleccionado.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
+                tableroBarcos.setBarco(this.barcoSeleccionado,orientacionAleatoria,filaAleatoria,columnaAleatoria);
+                actualizarBarcosDisponibles(this.barcoSeleccionado);
         }
         else{
             barcosAleatorio();  //Llamada Recursiva
