@@ -56,6 +56,9 @@ public class Modelo implements Observable {
         juegoBatallaNaval.getJugador1().disparar(fila,columna);
         juegoBatallaNaval.actualizarMatrizJ2();
         notifyObservers();
+        juegoBatallaNaval.disparaMaquina();
+        juegoBatallaNaval.actualizarMatrizJ1();
+        notifyObservers();
     }
 
     public void pausar(boolean b) {
@@ -100,6 +103,7 @@ public class Modelo implements Observable {
         this.estadoDelJuego = new EstadoDelJuego();
         this.juegoBatallaNaval = new JuegoBatallaNaval(estadoDelJuego);
         notifyObservers();
+        this.juegoBatallaNaval.setBarcosMaquina();
     }
 
     public boolean estaListoParaJugar() {
