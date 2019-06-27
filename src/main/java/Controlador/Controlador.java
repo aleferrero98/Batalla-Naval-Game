@@ -130,7 +130,9 @@ public class Controlador implements Observer {
             modelo.puedeDisparar(true);
             modelo.puedePonerBarcos(false);
             modelo.runJuego();
+
         }
+
     }
 
     public void registrarJugador(){

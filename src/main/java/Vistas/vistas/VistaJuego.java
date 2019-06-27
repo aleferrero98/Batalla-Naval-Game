@@ -14,10 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
@@ -268,6 +265,11 @@ public class VistaJuego implements ActionListener, Observer {
 
             }
 
+        }
+        if(modelo.ganoJ1()){
+            JOptionPane.showMessageDialog(null, "Ganaste " + modelo.getNombreJ1() + " !");
+        }else if(modelo.ganoJ2()){
+            JOptionPane.showMessageDialog(null, "Perdiste " + modelo.getNombreJ1() + " !");
         }
     }
 }
