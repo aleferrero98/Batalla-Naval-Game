@@ -169,7 +169,6 @@ public class Controlador implements Observer {
     public void mute(){
     }
     public void unmute(){
-
     }
 
 
@@ -197,7 +196,6 @@ public class Controlador implements Observer {
         }
     }
 
-
     private Avatar toAvatar(String s) {
         s = s.toUpperCase();
         switch (s){
@@ -208,7 +206,9 @@ public class Controlador implements Observer {
         }
     }
 
-
+    public String getNombreJ1() {
+        return nombreJ1;
+    }
 
     @Override
     public void update() {

@@ -99,4 +99,19 @@ public class EstadoDelJuego {
         this.disparando = disparando;
     }
 
+    public boolean isGanoJ1() {
+        return ganoJ1;
+    }
+
+    public void setGanoJ1(boolean ganoJ1) {
+        this.ganoJ1 = ganoJ1;
+    }
+
+    public boolean isGanoJ2() {
+        return ganoJ2;
+    }
+
+    public void setGanoJ2(boolean ganoJ2) {
+        this.ganoJ2 = ganoJ2;
+    }
 }
