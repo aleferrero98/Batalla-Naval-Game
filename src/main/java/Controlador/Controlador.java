@@ -1,5 +1,7 @@
 package Controlador;
 
+import Modelo.Excepciones.InvalidDisparoException;
+import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.*;
@@ -19,7 +21,7 @@ public class Controlador implements Observer {
         modelo.addObserver(this);
     }
 
-    public void dispararEnTablero(int fila, int columna){
+    public void dispararEnTablero(int fila, int columna) throws InvalidDisparoException {
         modelo.dispararEn(fila,columna);
     }
     public void elegirDisparo(String disparo){
@@ -34,7 +36,7 @@ public class Controlador implements Observer {
     public void elegirBarco(String tipoDeBarco){
         modelo.selecBarco(toBarco(tipoDeBarco));
     }
-    public void ponerBarco(char orientacion, int fila, int columna){
+    public void ponerBarco(char orientacion, int fila, int columna)throws InvalidPosicionBarco {
         modelo.setBarcoActual(orientacion,fila,columna);
     }
     public void irLogIn(){
@@ -62,7 +64,7 @@ public class Controlador implements Observer {
     }
 
     public void start(){
-        if(modelo.listoParaJugar()){
+        if(modelo.estaListoParaJugar()){
             modelo.puedeDisparar(true);
             modelo.puedePonerBarcos(false);
             modelo.runJuego();

@@ -1,5 +1,6 @@
 package Modelo.Juego.ElementosPrincipales;
 
+import Controlador.Avatar;
 import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
@@ -13,8 +14,10 @@ public class Jugador {
     private Tablero tableroBarcos;
     private Tablero tableroDisparos;
     private DisparoBehavior maneraDeDisparar;
+    private Barco barcoSeleccionado;
     private HashMap<Disparo, Integer> disparosDisponibles;
     private HashMap<TipoDeBarco, Integer> barcosDisponibles;
+
 
     public Jugador(Tablero tableroBarcos, Tablero tableroDisparos) {
         this.tableroBarcos = tableroBarcos;
@@ -77,6 +80,10 @@ public class Jugador {
         return false;
     }
 
+    public void setBarcoSeleccionado(Barco b){
+        this.barcoSeleccionado = b;
+    }
+
     /**
      * devuelve true si puede posicionar ese barco en ese lugar en su tablero de barcos
      * @param barco
@@ -117,7 +124,9 @@ public class Jugador {
         }
         //Caso contrario no hace nada
     }
-
+    public void colocarBarco(char orientacion, int fila, int columna) throws InvalidPosicionBarco {
+        colocarBarco(this.barcoSeleccionado, orientacion, fila, columna);
+    }
 
 
     /**
@@ -134,5 +143,6 @@ public class Jugador {
     private void gastarBarco(TipoDeBarco barco){
         barcosDisponibles.put(barco,(barcosDisponibles.get(barco)-1));
     }
+
 
 }

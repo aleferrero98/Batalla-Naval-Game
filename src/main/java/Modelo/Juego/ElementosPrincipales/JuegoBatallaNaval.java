@@ -1,9 +1,10 @@
 package Modelo.Juego.ElementosPrincipales;
 
+import Modelo.Excepciones.InvalidPosicionBarco;
+import Modelo.Juego.FactoryBarcos.AstilleroMilitar;
 import Modelo.Juego.FactoryBarcos.FabricaDeBarcos;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
-import Modelo.Juego.StrategyDisparo.Disparo;
-import Modelo.Juego.StrategyDisparo.DisparoComun;
+import Modelo.Juego.StrategyDisparo.*;
 
 import java.util.HashMap;
 
@@ -27,7 +28,7 @@ public class JuegoBatallaNaval {
     private Jugador jugador2; //maquina
     private Tablero tableroBarcosJ1;
     private Tablero tableroBarcosJ2;
-    private FabricaDeBarcos Asttillero;
+    private FabricaDeBarcos asttillero;
     private EstadoDelJuego estado;
     private AI ai;
 
@@ -35,20 +36,36 @@ public class JuegoBatallaNaval {
 
     public JuegoBatallaNaval(EstadoDelJuego estado) {
         this.estado = estado;
+        this.asttillero = new AstilleroMilitar();
         crearTableros();
         crearJugadores();
         setearDisparosDisponibles();
         setearBarcosDisponibles();
     }
 
-    /*
-    crear los jugadores
-    crear los barcos
-    crear los tableros
-    setear los disparos disponibles
-    setear los barcos disponibles
-    crear un estado e ir modificandolo
-     */
+    public Jugador getJugador1() {
+        return jugador1;
+    }
+
+    public Jugador getJugador2() {
+        return jugador2;
+    }
+
+    public Tablero getTableroBarcosJ1() {
+        return tableroBarcosJ1;
+    }
+
+    public Tablero getTableroBarcosJ2() {
+        return tableroBarcosJ2;
+    }
+
+    public EstadoDelJuego getEstado() {
+        return estado;
+    }
+
+    public boolean isTurnoJugador1() {
+        return turnoJugador1;
+    }
 
     private void crearTableros(){
         tableroBarcosJ1 = new Tablero(TABLERO_SIZE);
@@ -95,4 +112,49 @@ public class JuegoBatallaNaval {
 
         return barcos;
     }
+
+    public void setDisparoJ1(Disparo d) {
+        jugador1.setManeraDeDisparar(toDisparoBehavior(d));
+    }
+
+    private DisparoBehavior toDisparoBehavior(Disparo d){
+        switch (d){
+            case ALEATORIO: return new DisparoAleatorio();
+            case COMUN: return new DisparoComun();
+            case CRUZ: return new DisparoCruz();
+            case CORTADO: return new DisparoCortado();
+            case TERMODIRIGIDO: return new DisparoTermodirigido();
+            default:
+                throw new IllegalStateException("Unexpected value: " + d);
+        }
+    }
+
+    public void barcoActualJ1(TipoDeBarco b) {
+        if(jugador1.barcoParaPonerDisponible(b)){
+            jugador1.setBarcoSeleccionado(asttillero.encargarBarco(b)); //FACTORY !!!
+        }
+    }
+
+    public void colocarBarcoJ1(char orientacion, int fila, int columna) throws InvalidPosicionBarco {
+        if(estado.isColocandoBarcos()) {
+            this.jugador1.colocarBarco(orientacion, fila, columna);
+        }
+    }
+
+    public void habilitarBarcos() {
+        estado.setColocandoBarcos(true);
+    }
+
+    public void deshabilitarBarcos() {
+        estado.setColocandoBarcos(false);
+    }
+
+    public void habilitarDisparos(){
+        estado.setDisparando(true);
+    }
+
+    public void desHabilitarDisparos(){
+        estado.setDisparando(false);
+    }
+
 }
