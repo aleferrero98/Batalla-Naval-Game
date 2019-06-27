@@ -16,6 +16,8 @@ public class Controlador implements Observer {
     private VistaLogin vistaLogin;
     private VistaJuego vistaJuego;
 
+    private char ultimaOrientacion;
+
 
     public Controlador() {
         vistaInicio = new VistaInicio(this);
@@ -50,8 +52,13 @@ public class Controlador implements Observer {
     public void elegirBarco(String tipoDeBarco){
         modelo.selecBarco(toBarco(tipoDeBarco));
     }
-    public void ponerBarco(char orientacion, int fila, int columna)throws InvalidPosicionBarco {
-        modelo.setBarcoActual(orientacion,fila,columna);
+
+    public void setOrientacionBarco(char orientacionBarco){
+        this.ultimaOrientacion = orientacionBarco;
+    }
+
+    public void ponerBarco(int fila, int columna)throws InvalidPosicionBarco {
+        modelo.setBarcoActual(this.ultimaOrientacion,fila,columna);
     }
     public void irLogIn(){
         /*
@@ -159,6 +166,8 @@ public class Controlador implements Observer {
             default: throw new IllegalStateException("Unexpected value: " + s);
         }
     }
+
+
 
     @Override
     public void update() {
