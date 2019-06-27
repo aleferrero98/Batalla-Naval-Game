@@ -13,12 +13,11 @@ public class Main {
             e.printStackTrace();
         }
         tablero.activarTablero();
+       /* int numero = (int) (Math.random() * 5) + 1;
 
-            if(true){
-                System.out.println("puto");
-            }
-            else if(true){
-                System.out.println("el que lee");
-            }
+        while(numero<6){
+            numero = (int) (Math.random() * 5) + 1;
+            System.out.println(numero);
+        }*/
     }
 }

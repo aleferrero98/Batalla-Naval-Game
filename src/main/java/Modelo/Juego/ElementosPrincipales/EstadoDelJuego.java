@@ -23,7 +23,7 @@ public class EstadoDelJuego {
         esTurnoDelJ2=false;
     }
 
-    private void crearMatrizJugadorN1(int filas,int columnas) {
+    public void crearMatrizJugadorN1(int filas,int columnas) {
         jugadorN1 = new int[filas][columnas];
         for(int i=0;i<filas;i++){
             for(int j=0;j<columnas;j++){
@@ -31,7 +31,7 @@ public class EstadoDelJuego {
             }
         }
     }
-    private void crearMatrizJugadorN2(int filas,int columnas) {
+    public void crearMatrizJugadorN2(int filas,int columnas) {
         jugadorN2 = new int[filas][columnas];
         for(int i=0;i<filas;i++){
             for(int j=0;j<columnas;j++){
