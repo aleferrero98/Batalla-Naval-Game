@@ -104,16 +104,18 @@ public class Controlador implements Observer {
     public void registrarJugador(String nombre, String avatar){
         if(nombre != null && avatar !=null) {
             modelo.registrarJugador1(toAvatar(avatar), nombre);
-            /*
-            se apaga la ventana de LogIn
-            y se enciende la ventana de inicio
-             */
         }
     }
+
+    /**
+     * setear el mismo color a las vistas menos la de inicio
+     * @param color
+     */
     public void selecColor(Color color){
-        /*
-        setear el mismo color a las vistas menos la de inicio
-         */
+        vistaConfig.cambiarFondo(color);
+        vistaLogin.cambiarFondo(color);
+        vistaJuego.cambiarFondo(color);
+
     }
 
     public void mute(){
