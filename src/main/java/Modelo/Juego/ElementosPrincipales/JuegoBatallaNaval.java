@@ -1,5 +1,6 @@
 package Modelo.Juego.ElementosPrincipales;
 
+import Modelo.Excepciones.InvalidDisparoException;
 import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.AstilleroMilitar;
 import Modelo.Juego.FactoryBarcos.FabricaDeBarcos;
@@ -198,6 +199,18 @@ public class JuegoBatallaNaval {
             }
         }
         estado.setMatrizJugadorN2(mat);
+    }
+
+
+
+
+    public void disparaMaquina() throws InvalidDisparoException {
+        this.ai.disparoAleatorio();
+        actualizarMatrizJ1();
+    }
+
+    public void setBarcosMaquina(){
+       // this.ai.colocarTodosBarcos();
     }
 
 

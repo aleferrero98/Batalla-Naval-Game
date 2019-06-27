@@ -6,6 +6,10 @@ import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.*;
+import Vistas.vistas.VistaConfig;
+import Vistas.vistas.VistaInicio;
+import Vistas.vistas.VistaJuego;
+import Vistas.vistas.VistaLogin;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,12 +21,15 @@ public class Controlador implements Observer {
     private VistaLogin vistaLogin;
     private VistaJuego vistaJuego;
 
+    private char ultimaOrientacion;
 
-    public Controlador() {
-        vistaInicio = new VistaInicio(this);
-        vistaConfig = new VistaConfig(this);
-        vistaLogin = new VistaLogin(this);
-        vistaJuego = new VistaJuego(this);
+
+    public Controlador(Modelo modelo) {
+        setModelo(modelo);
+        vistaInicio = new VistaInicio(this, modelo);
+        vistaConfig = new VistaConfig(this, modelo);
+        vistaLogin = new VistaLogin(this, modelo);
+        vistaJuego = new VistaJuego(this, modelo);
         vistaInicio.ubicarAlMedio();
         vistaConfig.ubicarAlMedio();
         vistaLogin.ubicarAlMedio();
@@ -51,8 +58,13 @@ public class Controlador implements Observer {
     public void elegirBarco(String tipoDeBarco){
         modelo.selecBarco(toBarco(tipoDeBarco));
     }
-    public void ponerBarco(char orientacion, int fila, int columna)throws InvalidPosicionBarco {
-        modelo.setBarcoActual(orientacion,fila,columna);
+
+    public void setOrientacionBarco(char orientacionBarco){
+        this.ultimaOrientacion = orientacionBarco;
+    }
+
+    public void ponerBarco(int fila, int columna)throws InvalidPosicionBarco {
+        modelo.setBarcoActual(this.ultimaOrientacion,fila,columna);
     }
     public void irLogIn(){
         */
@@ -170,6 +182,8 @@ public class Controlador implements Observer {
             default: throw new IllegalStateException("Unexpected value: " + s);
         }
     }
+
+
 
     @Override
     public void update() {

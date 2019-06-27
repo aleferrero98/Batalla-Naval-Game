@@ -21,10 +21,14 @@ public class Modelo implements Observable {
     private Avatar avatarJ1;
     private boolean estaRegistradoJ1;
 
+    public Modelo(){
+        observers = new ArrayList<>();
+    }
+
 
     @Override
     public void addObserver(Observer o) {
-        observers.add(o);
+        this.observers.add(o);
     }
 
     @Override
@@ -55,6 +59,9 @@ public class Modelo implements Observable {
     public void dispararEn(int fila, int columna) throws InvalidDisparoException {
         juegoBatallaNaval.getJugador1().disparar(fila,columna);
         juegoBatallaNaval.actualizarMatrizJ2();
+        notifyObservers();
+        juegoBatallaNaval.disparaMaquina();
+        juegoBatallaNaval.actualizarMatrizJ1();
         notifyObservers();
     }
 
@@ -100,6 +107,7 @@ public class Modelo implements Observable {
         this.estadoDelJuego = new EstadoDelJuego();
         this.juegoBatallaNaval = new JuegoBatallaNaval(estadoDelJuego);
         notifyObservers();
+        this.juegoBatallaNaval.setBarcosMaquina();
     }
 
     public boolean estaListoParaJugar() {
