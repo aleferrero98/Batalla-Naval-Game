@@ -24,7 +24,7 @@ public class DisparoTermodirigidoTest {
         t2 = new Tablero(13);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void disparar_fallo() throws InvalidDisparoException, InvalidPosicionBarco {
         t1.setBarco(s1,'N',5,5);
         t1.activarTablero();
