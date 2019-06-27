@@ -10,6 +10,11 @@ import java.util.HashMap;
 
 public class JuegoBatallaNaval {
 
+    private final int BLANCO = 0;
+    private final int AZUL = 1;
+    private final int AMARILLO = 2;
+    private final int ROJO = 3;
+
     private final int TABLERO_SIZE = 13;
 
     private final int CANT_D_ALEATORIO = 2;
@@ -36,6 +41,7 @@ public class JuegoBatallaNaval {
 
     public JuegoBatallaNaval(EstadoDelJuego estado) {
         this.estado = estado;
+        this.estado.crearMatrizJugadorN1(TABLERO_SIZE,TABLERO_SIZE);
         this.asttillero = new AstilleroMilitar();
         crearTableros();
         crearJugadores();
@@ -156,5 +162,38 @@ public class JuegoBatallaNaval {
     public void desHabilitarDisparos(){
         estado.setDisparando(false);
     }
+
+
+    public void actualizarMatrizJ1(){
+        int[][] mat = estado.getMatrizJugadorN1();
+        for(int i=0; i<mat.length; i++){
+            for(int j=0; j<mat[0].length; j++){
+                Celda c = tableroBarcosJ1.getCelda(i,j);
+                if(estado.isDisparando() && (c.isActivada()==false)){
+                    if(c.isCeldaConBarco()) mat[i][j] = ROJO;
+                    else mat[i][j] = AMARILLO;
+                }
+                else if(estado.isColocandoBarcos()){
+                    if(c.isCeldaConBarco()) mat[i][j] = AZUL;
+                }
+            }
+        }
+        estado.setMatrizJugadorN1(mat);
+    }
+
+    public void actualizarMatrizJ2(){
+        int[][] mat = estado.getMatrizJugadorN2();
+        for(int i=0; i<mat.length; i++){
+            for(int j=0; j<mat[0].length; j++){
+                Celda c = tableroBarcosJ2.getCelda(i,j);
+                if(estado.isDisparando() && (c.isActivada()==false)){
+                    if(c.isCeldaConBarco()) mat[i][j] = ROJO;
+                    else mat[i][j] = AMARILLO;
+                }
+            }
+        }
+        estado.setMatrizJugadorN2(mat);
+    }
+
 
 }

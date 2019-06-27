@@ -37,6 +37,8 @@ public class Modelo implements Observable {
         for(Observer o : observers) o.update();
     }
 
+    public JuegoBatallaNaval getJuego()
+
     public void setDisparo(Disparo d) {
         if(juegoBatallaNaval.getJugador1().disparoDisponible(d)){
             juegoBatallaNaval.setDisparoJ1(d);
@@ -52,6 +54,7 @@ public class Modelo implements Observable {
 
     public void dispararEn(int fila, int columna) throws InvalidDisparoException {
         juegoBatallaNaval.getJugador1().disparar(fila,columna);
+        juegoBatallaNaval.actualizarMatrizJ2();
         notifyObservers();
     }
 
@@ -67,6 +70,7 @@ public class Modelo implements Observable {
 
     public void setBarcoActual(char orientacion, int fila, int columna) throws InvalidPosicionBarco {
         juegoBatallaNaval.colocarBarcoJ1(orientacion,fila,columna);
+        juegoBatallaNaval.actualizarMatrizJ1();
         notifyObservers();
     }
 
