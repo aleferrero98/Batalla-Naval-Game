@@ -22,6 +22,8 @@ public class Controlador implements Observer {
     private VistaJuego vistaJuego;
 
     private char ultimaOrientacion;
+    private Avatar avatarJ1;
+    private String nombreJ1;
 
 
     public Controlador(Modelo modelo) {
@@ -124,11 +126,19 @@ public class Controlador implements Observer {
         }
     }
 
-    public void registrarJugador(String nombre, String avatar){
-        if(nombre != null && avatar !=null) {
-            modelo.registrarJugador1(toAvatar(avatar), nombre);
+    public void registrarJugador(){
+        if(this.nombreJ1 != null && this.avatarJ1 !=null) {
+            modelo.registrarJugador1(avatarJ1, nombreJ1);
 
         }
+    }
+
+    public void setAvatarJ1(String avatar){
+        this.avatarJ1 = toAvatar(avatar);
+    }
+
+    public void setNombreJ1(String nombre){
+        this.nombreJ1 = nombre;
     }
 
 
