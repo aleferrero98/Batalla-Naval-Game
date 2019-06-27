@@ -18,5 +18,11 @@ llaman al metodo bombardear de ese barco
 - 2 Destructores: ocupan 3 casillas.
 - 1 Fragatas: ocupan 2 casilla.
 
-### Tipos y cantidades de disparos: 
+### Tipos y cantidades de disparos:
+- 2 disparos Aleatorios
+- 1 disparo Termodirigido
+- 1 disparo Cruz
+- 2 disparos Cortados
+- Ilimitados disparos comunes
+
 

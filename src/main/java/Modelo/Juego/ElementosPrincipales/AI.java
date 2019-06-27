@@ -5,7 +5,6 @@ import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.AstilleroMilitar;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
-import Modelo.Juego.StrategyDisparo.DisparoBehavior;
 import java.util.HashMap;
 
 public class AI {
@@ -31,17 +30,28 @@ public class AI {
         this.barcosDisponibles = barcosDisponibles;
     }
     public void disparoAleatorio() throws InvalidDisparoException{
-        int columnaAleatoria = (int) (Math.random() * tableroDisparos.getColumnas());
-        int filaAleatoria = (int) (Math.random() * tableroDisparos.getFilas());
-        Disparo disparoElegido = elegirDisparoAleatorio();
-        if(disparoDisponible(disparoElegido) && tableroDisparos.esValido(filaAleatoria,columnaAleatoria)){
-            tableroDisparos.dispararUna(filaAleatoria,columnaAleatoria);
-            actualizarDisparosDisponibles(disparoElegido);
-        }
-        else{
-            disparoAleatorio(); //llamada recursiva hasta que se pueda
+        if(sePuedeDisparar()){
+            int columnaAleatoria = (int) (Math.random() * tableroDisparos.getColumnas());
+            int filaAleatoria = (int) (Math.random() * tableroDisparos.getFilas());
+            Disparo disparoElegido = elegirDisparoAleatorio();
+            if(disparoDisponible(disparoElegido) && tableroDisparos.esValido(filaAleatoria,columnaAleatoria)){
+                tableroDisparos.dispararUna(filaAleatoria,columnaAleatoria);
+                actualizarDisparosDisponibles(disparoElegido);
+            }
+            else{
+              disparoAleatorio(); //llamada recursiva hasta que se pueda
+            }
         }
     }
+    private boolean sePuedeDisparar(){
+        for(Integer recorrer : disparosDisponibles.values()){
+            if(recorrer >0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean disparoDisponible(Disparo tipodeDisparo){
         if(disparosDisponibles.get(tipodeDisparo) < 1) {
             return false;
@@ -75,18 +85,30 @@ public class AI {
     }
 
     public void barcosAleatorio() throws InvalidPosicionBarco {
-        this.barcoSeleccionado = elegirBarcoAleatorio();
-        int columnaAleatoria = (int) (Math.random() * tableroBarcos.getColumnas());
-        int filaAleatoria = (int) (Math.random() * tableroBarcos.getFilas());
-        char orientacionAleatoria = elegirOrientacionAleatoria();
-        if(barcoDisponible(this.barcoSeleccionado) && this.barcoSeleccionado.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
-                tableroBarcos.setBarco(this.barcoSeleccionado,orientacionAleatoria,filaAleatoria,columnaAleatoria);
-                actualizarBarcosDisponibles(this.barcoSeleccionado);
-        }
-        else{
-            barcosAleatorio();  //Llamada Recursiva
+        if(sePuedeUbicarBarcos()){
+            this.barcoSeleccionado = elegirBarcoAleatorio();
+            int columnaAleatoria = (int) (Math.random() * tableroBarcos.getColumnas());
+            int filaAleatoria = (int) (Math.random() * tableroBarcos.getFilas());
+            char orientacionAleatoria = elegirOrientacionAleatoria();
+            if(barcoDisponible(this.barcoSeleccionado) && this.barcoSeleccionado.puedePosicionar(tableroBarcos, orientacionAleatoria, tableroBarcos.getCelda(filaAleatoria,columnaAleatoria))){
+                    tableroBarcos.setBarco(this.barcoSeleccionado,orientacionAleatoria,filaAleatoria,columnaAleatoria);
+                    actualizarBarcosDisponibles(this.barcoSeleccionado);
+            }
+            else{
+                barcosAleatorio();  //Llamada Recursiva
+            }
         }
     }
+
+    private boolean sePuedeUbicarBarcos() {
+        for(Integer recorrer : barcosDisponibles.values()){
+            if(recorrer>0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private Barco elegirBarcoAleatorio(){
         Barco barcoElegido;
         int eleccion = (int) (Math.random() * barcosDisponibles.size()) + 1;
