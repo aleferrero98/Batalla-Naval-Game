@@ -40,7 +40,7 @@ public class AI {
                 actualizarDisparosDisponibles(disparoElegido);
             }
             else{
-              disparoAleatorio(); //llamada recursiva hasta que se pueda
+                disparoAleatorio(); //llamada recursiva hasta que se pueda
             }
         }
     }
@@ -166,4 +166,3 @@ public class AI {
 
 
 }
-

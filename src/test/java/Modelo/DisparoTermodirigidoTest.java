@@ -6,6 +6,7 @@ import Modelo.Juego.ElementosPrincipales.Tablero;
 import Modelo.Juego.FactoryBarcos.BarcosParaAstilleroMilitar.Submarino;
 import static org.junit.Assert.*;
 
+import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.Juego.StrategyDisparo.DisparoTermodirigido;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,8 +40,10 @@ public class DisparoTermodirigidoTest {
         t1.activarTablero();
         d1.disparar(5,6,t1);
         assertNotEquals(4,t1.getBarcosNoHundidos().get(0).getCeldasNoBombardeadas().size());
+        assertEquals(3,t1.getBarcosNoHundidos().get(0).getCeldasNoBombardeadas().size());
     }
     @Test
     public void getTipo() {
+        assertEquals(Disparo.TERMODIRIGIDO,d1.getTipo());
     }
 }
