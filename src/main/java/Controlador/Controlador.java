@@ -23,7 +23,8 @@ public class Controlador implements Observer {
     private char ultimaOrientacion;
 
 
-    public Controlador() {
+    public Controlador(Modelo modelo) {
+        setModelo(modelo);
         vistaInicio = new VistaInicio(this, modelo);
         vistaConfig = new VistaConfig(this, modelo);
         vistaLogin = new VistaLogin(this, modelo);

@@ -52,6 +52,7 @@ public class VistaJuego implements ActionListener, Observer {
         setObserver();
         this.controlador = controlador;
         this.modelo = modelo;
+        this.modelo.addObserver(this);
 
     }
     public void hacerVisible(boolean b) {

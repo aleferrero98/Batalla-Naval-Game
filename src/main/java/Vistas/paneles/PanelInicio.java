@@ -31,8 +31,9 @@ public class PanelInicio extends JPanel {
         listaBotones.add(btnRegistrarse);
         listaBotones.add(btnConfiguracionAyuda);
 
-        //JPanel logo = new PanelAvatar(new ImageIcon(getClass().getResource("Vistas/imagenesAvatar/logoBatallaNaval.jpg")));
-
+        JPanel logo = new PanelAvatar(new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\logoBatallaNaval.jpg"));
+      //  JPanel logo = new PanelAvatar(new ImageIcon(getClass().getResource("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\logoBatallaNaval.jpg")));
+        //JPanel logo = new JPanel();
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
                 groupLayout.createParallelGroup(Alignment.LEADING)

@@ -21,10 +21,14 @@ public class Modelo implements Observable {
     private Avatar avatarJ1;
     private boolean estaRegistradoJ1;
 
+    public Modelo(){
+        observers = new ArrayList<>();
+    }
+
 
     @Override
     public void addObserver(Observer o) {
-        observers.add(o);
+        this.observers.add(o);
     }
 
     @Override

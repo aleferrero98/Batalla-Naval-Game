@@ -43,6 +43,7 @@ public class VistaConfig implements ActionListener, Observer {
         setObserver();
         this.controlador = controlador;
         this.modelo = modelo;
+        this.modelo.addObserver(this);
     }
     public void hacerVisible(boolean b) {
         frame.setVisible(b);
@@ -118,7 +119,7 @@ public class VistaConfig implements ActionListener, Observer {
         String texto = "";
         String resultado = "";
         try {
-            File archivo = new File("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\instrucciones");
+            File archivo = new File("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\instrucciones\\instrucciones.txt");
             if (archivo != null) {
                 FileReader archivos = new FileReader(archivo);
                 BufferedReader leer = new BufferedReader(archivos);

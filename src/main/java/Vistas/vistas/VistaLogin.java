@@ -9,8 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,6 +38,7 @@ public class VistaLogin implements ActionListener, Observer {
         setObserver();
         this.controlador = controlador;
         this.modelo = modelo;
+        this.modelo.addObserver(this);
 
     }
     public void hacerVisible(boolean b) {
@@ -73,6 +72,7 @@ public class VistaLogin implements ActionListener, Observer {
             System.out.println("boton aceptar");
         }else if(e.getSource()==botones.get(1)) {
             System.out.println("boton cancelar");
+            this.controlador.volverInicio();
         }
 
     }

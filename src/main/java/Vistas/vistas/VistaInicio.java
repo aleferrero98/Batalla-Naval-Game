@@ -31,6 +31,7 @@ public class VistaInicio implements ActionListener, Observer {
         setObserver();
         this.controlador = controlador;
         this.modelo = modelo;
+        this.modelo.addObserver(this);
 
 
     }
