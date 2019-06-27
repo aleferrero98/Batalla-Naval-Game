@@ -157,6 +157,7 @@ public class JuegoBatallaNaval {
 
     public void habilitarDisparos(){
         estado.setDisparando(true);
+        jugador1.
     }
 
     public void desHabilitarDisparos(){

@@ -11,9 +11,23 @@ import java.util.ArrayList;
 
 public class Controlador implements Observer {
     private Modelo modelo;
+    private VistaConfig vistaConfig;
+    private VistaInicio vistaInicio;
+    private VistaLogin vistaLogin;
+    private VistaJuego vistaJuego;
 
 
     public Controlador() {
+        vistaInicio = new VistaInicio(this);
+        vistaConfig = new VistaConfig(this);
+        vistaLogin = new VistaLogin(this);
+        vistaJuego = new VistaJuego(this);
+        vistaInicio.ubicarAlMedio();
+        vistaConfig.ubicarAlMedio();
+        vistaLogin.ubicarAlMedio();
+        vistaJuego.ubicarAlMedio();
+
+        vistaInicio.hacerVisible(true);
     }
 
     public void setModelo(Modelo modelo) {
@@ -44,12 +58,26 @@ public class Controlador implements Observer {
         se apaga la vista de inicio
         se enciende la vista de LogIn
          */
+        vistaInicio.hacerVisible(false);
+        vistaLogin.hacerVisible(true);
+
+    }
+    public void volverInicio(){
+        /*
+        se apaga la vista de login o configuracion
+        se enciende la vista de LogIn
+         */
+        vistaLogin.hacerVisible(false);
+        vistaConfig.hacerVisible(false);
+        vistaInicio.hacerVisible(true);
     }
     public void irConfigAyuda(){
         /*
         se apaga la vista de inicio
         se enciende la vista de configuracion y ayuda
          */
+        vistaInicio.hacerVisible(false);
+        vistaConfig.hacerVisible(true);
     }
     public void irJuego(){
         if(modelo.estaRegistrado()){
@@ -57,6 +85,8 @@ public class Controlador implements Observer {
             se apaga la vista de inicio
             se enciende la vista de juego
              */
+            vistaInicio.hacerVisible(false);
+            vistaJuego.hacerVisible(true);
             modelo.crearJuego();
             modelo.puedePonerBarcos(true);
             modelo.puedeDisparar(false);
@@ -121,7 +151,7 @@ public class Controlador implements Observer {
     private Avatar toAvatar(String s) {
         s = s.toUpperCase();
         switch (s){
-            case "FALSH": return Avatar.FLASH;
+            case "FLASH": return Avatar.FLASH;
             case "SPIDERMAN": return Avatar.SPIDERMAN;
             case "BATMAN": return Avatar.BATMAN;
             default: throw new IllegalStateException("Unexpected value: " + s);
@@ -132,7 +162,5 @@ public class Controlador implements Observer {
     public void update() {
 
     }
-
-
 
 }
