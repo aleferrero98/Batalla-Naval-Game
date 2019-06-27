@@ -5,6 +5,10 @@ import Modelo.Excepciones.InvalidPosicionBarco;
 import Modelo.Juego.FactoryBarcos.TipoDeBarco;
 import Modelo.Juego.StrategyDisparo.Disparo;
 import Modelo.*;
+import Vistas.vistas.VistaConfig;
+import Vistas.vistas.VistaInicio;
+import Vistas.vistas.VistaJuego;
+import Vistas.vistas.VistaLogin;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -20,10 +24,10 @@ public class Controlador implements Observer {
 
 
     public Controlador() {
-        vistaInicio = new VistaInicio(this);
-        vistaConfig = new VistaConfig(this);
-        vistaLogin = new VistaLogin(this);
-        vistaJuego = new VistaJuego(this);
+        vistaInicio = new VistaInicio(this, modelo);
+        vistaConfig = new VistaConfig(this, modelo);
+        vistaLogin = new VistaLogin(this, modelo);
+        vistaJuego = new VistaJuego(this, modelo);
         vistaInicio.ubicarAlMedio();
         vistaConfig.ubicarAlMedio();
         vistaLogin.ubicarAlMedio();
