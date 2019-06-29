@@ -41,6 +41,9 @@ public class EstadoDelJuego {
             }
         }
     }
+    public boolean  getBarcosJ1Posicionados(){
+        return  barcosJ1Posicionados;
+    }
     public int[][] getMatrizJugadorN1(){
         return matrizBarcosJugador1;
     }

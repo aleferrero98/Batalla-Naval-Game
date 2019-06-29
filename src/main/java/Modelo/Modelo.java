@@ -77,6 +77,9 @@ public class Modelo implements Observable {
     public void selecBarco(TipoDeBarco b) {
         juegoBatallaNaval.barcoActualJ1(b);
     }
+    public JuegoBatallaNaval getJuegoBatallaNaval(){
+        return juegoBatallaNaval;
+    }
 
     public void setBarcoActual(char orientacion, int fila, int columna) throws InvalidPosicionBarco {
         juegoBatallaNaval.colocarBarcoJ1(orientacion,fila,columna);

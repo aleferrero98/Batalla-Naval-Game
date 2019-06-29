@@ -203,9 +203,6 @@ public class JuegoBatallaNaval {
         estado.setMatrizJugadorN2(mat);
     }
 
-
-
-
     public void disparaMaquina() throws InvalidDisparoException {
         this.jugador2.disparoAleatorio();
         actualizarMatrizJ1();

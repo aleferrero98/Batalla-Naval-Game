@@ -1,72 +1,72 @@
 Instrucciones del juego Batalla Naval
 
 1. Objetivo del juego:
-Hundir los 6 barcos de tu oponente antes que él acabe con los tuyos.
+Hundir los 6 barcos de tu oponente antes que el acabe con los tuyos.
 
 Cada jugador tiene 2 tableros compuesto por 10 filas y 10 columnas.
-Tablero de posición: es tu territorio, en él distribuyes tu flota antes de 
-comenzar la partida. Durante la partida pasará a un segundo plano (más pequeño), 
-y sólo será de observación. Verás la posición de tus barcos y los disparos de tu 
-oponente en tu territorio, pero no podrás realizar ningún cambio ni disparo en él.
+Tablero de posicion: es tu territorio, en el distribuyes tu flota antes de 
+comenzar la partida. Durante la partida pasara a un segundo plano (mas pequenio), 
+y solo sera de observacion. Veras la posicion de tus barcos y los disparos de tu 
+oponente en tu territorio, pero no podras realizar ningun cambio ni disparo en el.
 Tablero principal: es el territorio de tu enemigo, donde tiene desplegada su flota. 
-Será aquí donde se desarrollen tus movimientos (disparos) y tratarás de hundir los 
-barcos enemigos. Aparecerá en tu pantalla una vez comience la partida y en él 
-quedarán registrados todos tus movimientos, reflejando tanto los disparos al agua 
+Sera aqui donde se desarrollen tus movimientos (disparos) y trataras de hundir los 
+barcos enemigos. Aparecera en tu pantalla una vez comience la partida y en el 
+quedaran registrados todos tus movimientos, reflejando tanto los disparos al agua 
 como los barcos hundidos hasta el momento.
-Cada jugador tiene una flota de 6 barcos de diferente tamaño, por lo que cada 
-uno ocupará un número determinado de casillas en el tablero:
+Cada jugador tiene una flota de 6 barcos de diferente tamanio, por lo que cada 
+uno ocupara un numero determinado de casillas en el tablero:
 1 Portaaviones: ocupa 5 casillas
 1 Submarinos: ocupa 4 casillas(formando una T).
-1 Cañonero: ocupa 4 casillas.
+1 Canionero: ocupa 4 casillas.
 2 Destructores: ocupan 3 casillas.
 1 Fragatas: ocupan 2 casilla.
 
 2. Controles:
-Utiliza el ratón para colocar tus barcos en el tablero de posición. Arrastra el barco 
-hasta el tablero. Adoptará posición vertical. Si quieres que esté horizontal, pulsa 
-dos veces sobre él y se girará.
-Utiliza el ratón también para señalar tu disparo en tu tablero principal.
+Utiliza el raton para colocar tus barcos en el tablero de posicion. Arrastra el barco 
+hasta el tablero. Adoptara posicion vertical. Si quieres que este horizontal, pulsa 
+dos veces sobre el y se girara.
+Utiliza el raton tambien para senialar tu disparo en tu tablero principal.
 
-3. Terminología y movimientos:
-Agua: cuando disparas sobre una casilla donde no está colocado ningún barco enemigo,
- disparas al agua. En tu tablero principal aparecerá una X.
-Tocado: cuando disparas en una casilla en la que está ubicado un barco enemigo y 
-destruyes sólo una parte del barco, le has tocado. En tu tablero principal aparece 
+3. Terminologia y movimientos:
+Agua: cuando disparas sobre una casilla donde no esta colocado ningun barco enemigo,
+ disparas al agua. En tu tablero principal aparecera una X.
+Tocado: cuando disparas en una casilla en la que esta ubicado un barco enemigo y 
+destruyes solo una parte del barco, le has tocado. En tu tablero principal aparece 
 esa parte del barco con fuego. 
-Hundido: si disparas en una casilla en la que está ubicado un barco con el resto de 
+Hundido: si disparas en una casilla en la que esta ubicado un barco con el resto de 
 casillas tocadas, le has hundido, es decir, has eliminado ese barco del juego. Ganas 
 cuando hundes todos los barcos enemigos.
 
 4. Reglas generales:
-Número de jugadores: 2 (usuario vs máquina).
-Una vez posicionas tus barcos y comienzas la partida, no podrás volver a cambiarlos de posición.
-Podrás disparar en cualquier casilla del tablero, salvo en las que ya has disparado.
+Numero de jugadores: 2 (usuario vs maquina).
+Una vez posicionas tus barcos y comienzas la partida, no podras volver a cambiarlos de posicion.
+Podras disparar en cualquier casilla del tablero, salvo en las que ya has disparado.
 No puedes deshacer disparos ni propios ni de tus oponentes.
 Es un juego por turnos.
-Tienes tiempo límite de 15 segundos para realizar tu disparo, si se pasa el tiempo y no 
+Tienes tiempo limite de 15 segundos para realizar tu disparo, si se pasa el tiempo y no 
 has hecho tu movimiento, pierdes turno. Sin posibilidad a pausas
 La partida acaba cuando un jugador ha hundido la flota completa del enemigo. 
 Si un jugador abandona la partida, esta finaliza.
 
 5. Comienza la partida:
-Una vez has elegido sala, se crea la partida y se empieza a jugar contra la máquina.
-Todos los jugadores comienzan la partida con su flota de 6 barcos y su tablero de posición.
-El primer movimiento es distribuir tu flota por dicho tablero. Podrás colocar los barcos de 
-forma vertical y horizontal. Arrastra el barco al tablero de posición para colocarlo de forma
-vertical, y pulsa dos veces sobre él (cuando estén en el tablero) si quieres colocarlo de forma horizontal.
-No podrás ponerlos fuera del tablero. Si no se dan estos requisitos, no podrás comenzar la partida.
+Una vez has elegido sala, se crea la partida y se empieza a jugar contra la maquina.
+Todos los jugadores comienzan la partida con su flota de 6 barcos y su tablero de posicion.
+El primer movimiento es distribuir tu flota por dicho tablero. Podras colocar los barcos de 
+forma vertical y horizontal. Arrastra el barco al tablero de posicion para colocarlo de forma
+vertical, y pulsa dos veces sobre el (cuando esten en el tablero) si quieres colocarlo de forma horizontal.
+No podras ponerlos fuera del tablero. Si no se dan estos requisitos, no podras comenzar la partida.
 Pulsa sobre “Comenzar la partida” y espera a que tu oponente ubique sus barcos.
 
 6. Durante la batalla naval:
 En el momento en el que el usuario pone “Comenzar partida”, la batalla naval empieza.
-Aparecerán en tu pantalla los dos tableros: el de posición más pequeño (donde colocaste tus
-barcos) y el principal, más grande, donde realizarás y verás tus disparos, y los barcos tocados 
+Apareceran en tu pantalla los dos tableros: el de posicion mas pequenio (donde colocaste tus
+barcos) y el principal, mas grande, donde realizaras y veras tus disparos, y los barcos tocados 
 y hundidos de tu oponente.
 El primer jugador que dispara es el usuario.
 7. Fin de la partida:
 Gana el jugador que antes hunda la flota de su enemigo.
 Diferentes tipos de disparos:
-Disparo común: marca 1 sola casilla. Es el disparo por defecto
+Disparo comun: marca 1 sola casilla. Es el disparo por defecto
 Disparo cruz: marca 5 casillas en forma de cruz. Cada jugador dispone de solo 1 disparo por partida.
 Disparo Random: marca 3 casillas aleatorias. Dos disparos por jugador.
 Disparo cortado: son dos disparos separados por una casilla en blanco que se disparan al mismo 

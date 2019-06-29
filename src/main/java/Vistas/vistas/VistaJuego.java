@@ -32,6 +32,8 @@ public class VistaJuego implements ActionListener, Observer {
     private Controlador controlador;
     private Modelo modelo;
 
+    private char charVacio;
+
     public VistaJuego(Controlador controlador, Modelo modelo) {
 
         frame=new JFrame("Juego Batalla Naval");
@@ -88,7 +90,7 @@ public class VistaJuego implements ActionListener, Observer {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) throws IllegalStateException{
         // TODO Auto-generated method stub
         int[] resultMatLoc = buscarBotonApretado(e,btnMatrizLoc);
         int[] resultMatVis = buscarBotonApretado(e,btnMatrizVisit);
@@ -97,25 +99,35 @@ public class VistaJuego implements ActionListener, Observer {
         int resultDisparo = buscarBotonApretado(e,btnDisparos);
 
         if(resultMatLoc!=null) {
-            System.out.println("apreto boton matriz local: "+ "fila "+resultMatLoc[0] +" columna "+resultMatLoc[1]);
-            try {
-                controlador.ponerBarco(resultMatLoc[0],resultMatLoc[1]);
-            } catch (InvalidPosicionBarco invalidPosicionBarco) {
-                invalidPosicionBarco.printStackTrace();
+            if(controlador.getUltimaOrientacion() != charVacio) {
+                System.out.println("apreto boton matriz local: " + "fila " + resultMatLoc[0] + " columna " + resultMatLoc[1]);
+                try {
+                    controlador.ponerBarco(resultMatLoc[0], resultMatLoc[1]);
+                } catch (InvalidPosicionBarco invalidPosicionBarco) {
+                    invalidPosicionBarco.printStackTrace();
+                }
+            }else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar la orientacion del barco antes de colocarlo!","Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }else if(resultMatVis!=null) {
-            System.out.println("apreto boton matriz visitante: "+ "fila "+resultMatVis[0] +" columna "+resultMatVis[1]);
+            System.out.println("apreto boton matriz visitante: "+ "fila "+ resultMatVis[0] +" columna "+ resultMatVis[1]);
             try {
                 controlador.dispararEnTablero(resultMatVis[0],resultMatVis[1]);
             } catch (InvalidDisparoException ex) {
                 ex.printStackTrace();
             }
         }else if(resultBarcos > -1) {
-            System.out.println("apreto boton tipo de barco: "+"posicion "+ resultBarcos);
+            String tipoBarco = null;
             try {
-                controlador.elegirBarco(tipoBarco(resultBarcos));
+                tipoBarco = tipoBarco(resultBarcos);
             } catch (Exception ex) {
                 ex.printStackTrace();
+            }
+            if(controlador.barcoParaPonerDisponible(tipoBarco)){
+                System.out.println("apreto boton tipo de barco: "+"posicion "+ resultBarcos);
+                controlador.elegirBarco(tipoBarco);
+            }else{
+                JOptionPane.showMessageDialog(null, "No te quedan " + tipoBarco + " disponibles","Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }else if(resultPosicion > -1 && btnPosicion[resultPosicion].isSelected()) {
@@ -132,21 +144,41 @@ public class VistaJuego implements ActionListener, Observer {
             }
 
         }else if(resultDisparo > -1) {
-            System.out.println("apreto boton tipo de disparo: "+"posicion "+ resultDisparo);
+            String tipoDisparo = null;
             try {
-                controlador.elegirDisparo(tipoDisparo(resultDisparo));
+                tipoDisparo = tipoDisparo(resultDisparo);
             } catch (Exception ex) {
                 ex.printStackTrace();
+            }
+            if(controlador.disparoDisponible(tipoDisparo)){
+                System.out.println("apreto boton tipo de disparo: "+"posicion "+ resultDisparo);
+                controlador.elegirDisparo(tipoDisparo);
+            }else{
+                JOptionPane.showMessageDialog(null, "No te quedan " + tipoDisparo + " disponibles","Error", JOptionPane.ERROR_MESSAGE);
             }
         }else if(e.getSource()==btnPausa) {
             System.out.println("apreto boton de pausa");
             controlador.pausar();
         }else if(e.getSource()==btnStart){
-            System.out.println("apreto boton start");
-            controlador.start();
+            if(modelo.getEstadoDelJuego().getBarcosJ1Posicionados()) {
+                System.out.println("apreto boton start");
+                controlador.start();
+            }else {
+                JOptionPane.showMessageDialog(null, "Debes colocar todos tus barcos antes de comenzar a disparar!","Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         }else if(e.getSource()==btnVolverInicio){
             System.out.println("apreto boton volver a inicio");
-            controlador.volverInicio();
+            switch(volverAInicio()){
+                case 0:
+                    controlador.volverInicio(); //opcion SI
+                    break;
+                case 1:
+                    //opcion NO, no hace nada
+                    break;
+                default:
+                    throw new IllegalStateException("Opcion de confirmacion no valida");
+            }
+
         }
 
     }
@@ -223,6 +255,10 @@ public class VistaJuego implements ActionListener, Observer {
         panel.setBackground(color);
     }
 
+    private int volverAInicio(){
+        return JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Volver a inicio", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
+
     public void update() {
         int[][] matrizDisparos = modelo.getEstadoDelJuego().getMatrizJugadorN2();
         int[][] matrizBarcos = modelo.getEstadoDelJuego().getMatrizJugadorN1();
@@ -267,9 +303,9 @@ public class VistaJuego implements ActionListener, Observer {
 
         }
         if(modelo.ganoJ1()){
-            JOptionPane.showMessageDialog(null, "Ganaste " + modelo.getNombreJ1() + " !");
+            JOptionPane.showMessageDialog(null, "Ganaste " + modelo.getNombreJ1() + " !", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
         }else if(modelo.ganoJ2()){
-            JOptionPane.showMessageDialog(null, "Perdiste " + modelo.getNombreJ1() + " !");
+            JOptionPane.showMessageDialog(null, "Perdiste " + modelo.getNombreJ1() + " !", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

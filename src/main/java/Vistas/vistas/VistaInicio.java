@@ -9,8 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 
 public class VistaInicio implements ActionListener, Observer {
@@ -68,6 +67,9 @@ public class VistaInicio implements ActionListener, Observer {
 
     }
 
+    public void mensajeError(){
+        JOptionPane.showMessageDialog(null, "Debes registrarte antes de iniciar la partida!","Error", JOptionPane.ERROR_MESSAGE);
+    }
     public void update() {
 
     }

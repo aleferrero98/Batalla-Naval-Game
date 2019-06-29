@@ -32,11 +32,11 @@ public class Controlador implements Observer {
         vistaInicio = new VistaInicio(this, modelo);
         vistaConfig = new VistaConfig(this, modelo);
         vistaLogin = new VistaLogin(this, modelo);
-        //vistaJuego = new VistaJuego(this, modelo);
+
         vistaInicio.ubicarAlMedio();
         vistaConfig.ubicarAlMedio();
         vistaLogin.ubicarAlMedio();
-        //vistaJuego.ubicarAlMedio();
+
 
         vistaInicio.hacerVisible(true);
     }
@@ -64,6 +64,9 @@ public class Controlador implements Observer {
 
     public void setOrientacionBarco(char orientacionBarco){
         this.ultimaOrientacion = orientacionBarco;
+    }
+    public char getUltimaOrientacion() {
+        return ultimaOrientacion;
     }
 
     public void ponerBarco(int fila, int columna)throws InvalidPosicionBarco {
@@ -104,7 +107,7 @@ public class Controlador implements Observer {
         vistaConfig.hacerVisible(true);
     }
     public void irJuego(){
-        if(modelo.estaRegistrado()){   //PARA EL JUEGO COMPLETO SE DEBE AGREGAR ESTE IF
+        if(modelo.estaRegistrado()){
 
             /*
             se apaga la vista de inicio
@@ -122,7 +125,8 @@ public class Controlador implements Observer {
             modelo.crearJuego();
             modelo.puedePonerBarcos(true);
             modelo.puedeDisparar(false);
-        }
+
+        }else vistaInicio.mensajeError();
     }
 
     public void start(){
@@ -210,6 +214,14 @@ public class Controlador implements Observer {
 
     public String getNombreJ1() {
         return nombreJ1;
+    }
+
+    public boolean barcoParaPonerDisponible(String tipoBarco){
+        return modelo.getJuegoBatallaNaval().getJugador1().barcoParaPonerDisponible(toBarco(tipoBarco));
+    }
+
+    public boolean disparoDisponible(String tipoDisparo){
+        return modelo.getJuegoBatallaNaval().getJugador1().disparoDisponible(toDisparo(tipoDisparo));
     }
 
     @Override

@@ -10,10 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class VistaLogin implements ActionListener, Observer {
@@ -26,7 +23,7 @@ public class VistaLogin implements ActionListener, Observer {
     private Modelo modelo;
 
     public VistaLogin(Controlador controlador, Modelo modelo) {
-        frame=new JFrame("Inicio");
+        frame=new JFrame("Login");
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(0,0,500,500);
@@ -80,13 +77,35 @@ public class VistaLogin implements ActionListener, Observer {
             System.out.println("campotexto escrito");
         }else if(e.getSource()==botones.get(0)) {
             System.out.println("boton aceptar");
-            controlador.registrarJugador();
-            controlador.volverInicio();
+            if(!(radioBotones.get(0).isSelected()||radioBotones.get(1).isSelected()||radioBotones.get(2).isSelected()) || campoTexto.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debes seleccionar algun avatar y completar tu nombre!","Advertencia", JOptionPane.WARNING_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Bienvenido " + campoTexto.getText() + "!","Welcome", JOptionPane.INFORMATION_MESSAGE);
+                controlador.setNombreJ1(campoTexto.getText());
+                controlador.registrarJugador();
+                controlador.volverInicio();
+            }
+            System.out.println(campoTexto.getText());
+
         }else if(e.getSource()==botones.get(1)) {
             System.out.println("boton cancelar");
+            switch(guardarCambios()){
+                case 0:  //SI
+
+                    break;
+                case 1:  //NO
+                    radioBotones.get(0).setSelected(false);
+                    radioBotones.get(1).setSelected(false);
+                    radioBotones.get(2).setSelected(false);
+                    campoTexto.setText(null);
+                    break;
+            }
             this.controlador.volverInicio();
         }
 
+    }
+    private int guardarCambios(){
+        return JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios?", "Cancelar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
     public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
         panel.setBackground(color);
