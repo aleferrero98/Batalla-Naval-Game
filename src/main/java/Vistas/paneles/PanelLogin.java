@@ -4,9 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -20,6 +18,9 @@ public class PanelLogin extends JPanel {
     private JTextField txtCampotexto;
     private ArrayList<JButton> listaBotones;
     private ArrayList<JRadioButton> listaRadioBotones;
+    private JPanel avatar1;
+    private JPanel avatar2;
+    private JPanel avatar3;
     /**
      * Create the panel.
      */
@@ -35,9 +36,9 @@ public class PanelLogin extends JPanel {
         //JPanel avatar2 = new PanelAvatar(new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
         //JPanel avatar3 = new PanelAvatar(new ImageIcon(("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg")));
 
-        JPanel avatar1 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\flash.jpg"));
-        JPanel avatar2 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
-        JPanel avatar3 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg"));
+        avatar1 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\flash.jpg"));
+        avatar2 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
+        avatar3 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg"));
 
         txtCampotexto = new JTextField();
         txtCampotexto.setColumns(10);
@@ -140,6 +141,16 @@ public class PanelLogin extends JPanel {
     }
     public JTextField getCampoTexto() {
         return txtCampotexto;
+    }
+
+    public void cambiarFondo(Color color){
+        this.setBackground(color);
+        for(JRadioButton radioboton: listaRadioBotones){
+            radioboton.setBackground(color);
+        }
+        avatar1.setBackground(color);
+        avatar2.setBackground(color);
+        avatar3.setBackground(color);
     }
 }
 

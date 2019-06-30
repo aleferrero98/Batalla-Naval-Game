@@ -1,5 +1,8 @@
 package Vistas.paneles;
 
+import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -18,165 +21,84 @@ import javax.swing.JLabel;
 
 public class PanelJuego extends JPanel {
 
-    private JButton[] btnBarcos;
-    private JRadioButton[] btnPosicion;
-    private JButton[] btnDisparos;
     private PanelMatriz mLocal;
     private PanelMatriz mVisit;
     private JButton btnPausa;
     private JButton btnStart;
     private JButton btnVolverAInicio;
+    private PanelBarcos panelBarco;
+    private PanelOrientacion panelOrient;
+    private PanelDisparo panelDisparo;
 
     /**
      * Create the panel.
      */
     public PanelJuego() {
-        this.setSize(1000,500);
+        this.setSize(1000,490);
 
         mLocal = new PanelMatriz(300);
 
         mVisit = new PanelMatriz(500);
 
-        JButton btnPortaaviones = new JButton("Portaaviones");
-
-        JButton btnSubmarino = new JButton("Submarino");
-
-        JButton btnCaonero = new JButton("Ca\u00F1onero");
-
-        JButton btnDestructores = new JButton("Destructores");
-
-        JButton btnFragatas = new JButton("Fragatas");
-
-        btnBarcos = new JButton[5];   //hay 5 tipos de barcos (botones)
-        btnBarcos[0] = btnPortaaviones;
-        btnBarcos[1] = btnSubmarino;
-        btnBarcos[2] = btnCaonero;
-        btnBarcos[3] = btnDestructores;
-        btnBarcos[4] = btnFragatas;
-
-        JRadioButton rdbtnNorte = new JRadioButton("Norte");
-
-        JRadioButton rdbtnSur = new JRadioButton("Sur");
-
-        JRadioButton rdbtnEste = new JRadioButton("Este");
-
-        JRadioButton rdbtnOeste = new JRadioButton("Oeste");
-        btnPosicion = new JRadioButton[4];
-        btnPosicion[0] = rdbtnNorte;
-        btnPosicion[1] = rdbtnSur;
-        btnPosicion[2] = rdbtnEste;
-        btnPosicion[3] = rdbtnOeste;
-
         btnPausa = new JButton("Pausa");
-
-        JButton btnDComun = new JButton("Disparo Comun");
-
-        JButton btnDCruz = new JButton("Disparo Cruz");
-
-        JButton btnDRandom = new JButton("Disparo Random");
-
-        JButton btnDCortado = new JButton("Disparo Cortado");
-
-        JButton btnDTermodirigido = new JButton("Disparo Termodirigido");
-
-        btnDisparos = new JButton[5];   //hay 5 tipos de disparos (botones)
-        btnDisparos[0] = btnDComun;
-        btnDisparos[1] = btnDCruz;
-        btnDisparos[2] = btnDRandom;
-        btnDisparos[3] = btnDCortado;
-        btnDisparos[4] = btnDTermodirigido;
 
         btnStart = new JButton("Start");
 
-        JLabel lblElegirOrientacion = new JLabel("Elegir orientacion:");
-
         btnVolverAInicio = new JButton("Volver a inicio");
+
+        panelBarco = new PanelBarcos();
+
+        panelOrient = new PanelOrientacion();
+
+        panelDisparo = new PanelDisparo();
 
 
 
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
-                groupLayout.createParallelGroup(Alignment.TRAILING)
+                groupLayout.createParallelGroup(Alignment.LEADING)
                         .addGroup(groupLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(mLocal, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(btnFragatas))
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addContainerGap()
+                                        .addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+                                                .addComponent(mLocal, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(btnSubmarino)
-                                                        .addComponent(btnCaonero)
-                                                        .addComponent(btnDestructores)
-                                                        .addComponent(btnPortaaviones))
-                                                .addGap(91)
-                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lblElegirOrientacion)
-                                                        .addComponent(rdbtnOeste)
-                                                        .addComponent(rdbtnEste)
-                                                        .addComponent(rdbtnSur)
-                                                        .addComponent(rdbtnNorte))))
-                                .addGap(18)
-                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(btnPausa)
-                                        .addComponent(btnDTermodirigido)
-                                        .addComponent(btnDCortado)
-                                        .addComponent(btnDRandom)
-                                        .addComponent(btnDCruz)
-                                        .addComponent(btnDComun)
-                                        .addComponent(btnStart)
-                                        .addComponent(btnVolverAInicio))
-                                .addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                                .addComponent(mVisit, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(btnStart)
+                                                        .addComponent(btnVolverAInicio)
+                                                        .addComponent(btnPausa))
+                                                .addGap(46))
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                .addComponent(panelBarco, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                .addComponent(panelOrient, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                .addComponent(panelDisparo, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addComponent(mVisit, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createParallelGroup(Alignment.LEADING)
-                        .addComponent(mVisit, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                         .addGroup(groupLayout.createSequentialGroup()
-                                .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(btnPausa)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnStart)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnVolverAInicio)
-                                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnDComun)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDCruz)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDRandom)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDCortado)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDTermodirigido))
-                                        .addComponent(mLocal, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(groupLayout.createSequentialGroup()
+                                        .addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                        .addGroup(groupLayout.createSequentialGroup()
+                                                                .addComponent(btnPausa)
+                                                                .addGap(11)
+                                                                .addComponent(btnStart)
+                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                .addComponent(btnVolverAInicio))
+                                                        .addComponent(mLocal, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(11)
-                                                .addComponent(btnPortaaviones)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnSubmarino)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnCaonero)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnDestructores)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(btnFragatas))
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                .addGap(14)
-                                                .addComponent(lblElegirOrientacion)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(rdbtnNorte)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(rdbtnSur)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(rdbtnEste)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(rdbtnOeste)))
-                                .addGap(30))
+                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                        .addComponent(panelDisparo, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                                        .addComponent(panelOrient, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(panelBarco, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+                                        .addComponent(mVisit, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
         );
         setLayout(groupLayout);
 
@@ -189,13 +111,13 @@ public class PanelJuego extends JPanel {
         return mVisit.getBotones();
     }
     public JButton[] getBotonesBarc(){
-        return btnBarcos;
+        return panelBarco.getBotonesBarc();
     }
     public JRadioButton[] getBotonesPosicion(){
-        return btnPosicion;
+        return panelOrient.getBotonesPosicion();
     }
     public JButton[] getBotonesDisp(){
-        return btnDisparos;
+        return panelDisparo.getBotonesDisp();
     }
     public JButton getBotonPausa(){
         return btnPausa;
@@ -205,6 +127,12 @@ public class PanelJuego extends JPanel {
     }
     public JButton getVolverInicio() {
         return btnVolverAInicio;
+    }
+    public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
+        this.setBackground(color);
+        panelBarco.setBackground(color);
+        panelOrient.cambiarFondo(color);
+        panelDisparo.setBackground(color);
     }
 }
 

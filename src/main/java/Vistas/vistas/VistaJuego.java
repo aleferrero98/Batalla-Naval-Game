@@ -31,7 +31,7 @@ public class VistaJuego implements ActionListener, Observer {
     private JButton btnVolverInicio;
     private Controlador controlador;
     private Modelo modelo;
-
+    private String mensaje;
     private char charVacio;
 
     public VistaJuego(Controlador controlador, Modelo modelo) {
@@ -39,7 +39,7 @@ public class VistaJuego implements ActionListener, Observer {
         frame=new JFrame("Juego Batalla Naval");
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(0, 0, 1000, 570);
+        frame.setBounds(0, 0, 1000, 560);
         panel = new PanelJuego();
         frame.add(panel);
         frame.setLayout(new GridLayout(1,1));
@@ -57,9 +57,19 @@ public class VistaJuego implements ActionListener, Observer {
         this.modelo = modelo;
         this.modelo.addObserver(this);
 
+        mensaje = "Bienvenido al juego Batalla Naval";
+        mensaje += "\nRecuerda colocar tus barcos antes de disparar.";
+        mensaje += "\nTienes 1 portaavion, 2 destructores, 1 submarino, 1 fragata y 1 canionero.";
+        mensaje += "\nLuego apretas el boton START y ya puedes comenzar a disparar.";
+        mensaje += "\nTienes 1 disparo cruz, 1 disparo termodirigido, 2 disparos cortados y 2 disparos aleatorios.";
+        mensaje += "\nEl disparo comun es ilimitado.";
+
     }
     public void hacerVisible(boolean b) {
         frame.setVisible(b);
+        if(b){
+            JOptionPane.showMessageDialog(null, this.mensaje, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     public void ubicarAlMedio() {
         frame.setLocationRelativeTo(null);
@@ -130,19 +140,26 @@ public class VistaJuego implements ActionListener, Observer {
                 JOptionPane.showMessageDialog(null, "No te quedan " + tipoBarco + " disponibles","Error", JOptionPane.ERROR_MESSAGE);
             }
 
-        }else if(resultPosicion > -1 && btnPosicion[resultPosicion].isSelected()) {
-            System.out.println("apreto boton orientacion: "+"posicion "+ resultPosicion);
-            for(int i=0; i<btnPosicion.length; i++){
-                if(i != resultPosicion){
-                    btnPosicion[i].setSelected(false);
+        }else if(resultPosicion > -1) {
+            if(btnPosicion[resultPosicion].isSelected()) {
+                System.out.println("apreto boton orientacion: " + "posicion " + resultPosicion);
+                for (int i = 0; i < btnPosicion.length; i++) {
+                    if (i != resultPosicion) {
+                        btnPosicion[i].setSelected(false);
+                    }
+                }
+                try {
+                    controlador.setOrientacionBarco(orientacionEnChar(resultPosicion));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }else{
+                try {
+                    controlador.setOrientacionBarco(charVacio);  //si desseleciono el radioboton, pongo el char vacio
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
-            try {
-                controlador.setOrientacionBarco(orientacionEnChar(resultPosicion));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
         }else if(resultDisparo > -1) {
             String tipoDisparo = null;
             try {
@@ -252,7 +269,7 @@ public class VistaJuego implements ActionListener, Observer {
 
 
     public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
-        panel.setBackground(color);
+        panel.cambiarFondo(color);
     }
 
     private int volverAInicio(){

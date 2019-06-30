@@ -108,7 +108,7 @@ public class VistaLogin implements ActionListener, Observer {
         return JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios?", "Cancelar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
     public void cambiarFondo(Color color) { //cambia el color del fondo entre 5 valores posibles
-        panel.setBackground(color);
+        panel.cambiarFondo(color);
     }
 
     public void update() {
