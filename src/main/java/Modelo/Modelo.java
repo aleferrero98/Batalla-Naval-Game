@@ -49,7 +49,10 @@ public class Modelo implements Observable {
             juegoBatallaNaval.setDisparoJ1(d);
             notifyObservers();
         }
-        else{}
+        else{
+            juegoBatallaNaval.setDisparoJ1(Disparo.COMUN);
+            notifyObservers();
+        }
     }
 
     public void puedeDisparar(boolean b) {

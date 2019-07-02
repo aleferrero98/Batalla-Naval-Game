@@ -36,9 +36,9 @@ public class PanelLogin extends JPanel {
         //JPanel avatar2 = new PanelAvatar(new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
         //JPanel avatar3 = new PanelAvatar(new ImageIcon(("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg")));
 
-        avatar1 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\flash.jpg"));
-        avatar2 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\batman.jpg"));
-        avatar3 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.jpg"));
+        avatar1 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\flash.png"));
+        avatar2 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\batman.png"));
+        avatar3 = new PanelAvatar(new ImageIcon("src\\main\\java\\Vistas\\imagenesAvatar\\spiderman.png"));
 
         txtCampotexto = new JTextField();
         txtCampotexto.setColumns(10);

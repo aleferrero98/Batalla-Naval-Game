@@ -137,9 +137,9 @@ public class Tablero {
      */
     private void actualizarBarcos() {
         if(!barcosNoHundidos.isEmpty()){
-            for(Barco barco: this.barcosNoHundidos){
-                if(barco.hundido()){
-                    this.barcosNoHundidos.remove(barco);
+            for(int i=0; i<this.barcosNoHundidos.size(); i++){
+                if(this.barcosNoHundidos.get(i).hundido()){
+                    this.barcosNoHundidos.remove(this.barcosNoHundidos.get(i));
                 }
             }
         }

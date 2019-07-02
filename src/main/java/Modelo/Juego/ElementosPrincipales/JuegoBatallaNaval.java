@@ -213,6 +213,7 @@ public class JuegoBatallaNaval {
         //habria que preguntar si el jugador 2 efectivamente puso todos sus barcos
         //por ahora suponemos que si
         this.estado.setBarcosJ2Posicionados(true);
+
     }
 
 

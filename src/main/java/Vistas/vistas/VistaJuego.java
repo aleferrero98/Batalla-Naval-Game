@@ -33,6 +33,7 @@ public class VistaJuego implements ActionListener, Observer {
     private Modelo modelo;
     private String mensaje;
     private char charVacio;
+    private String disparoActual;
 
     public VistaJuego(Controlador controlador, Modelo modelo) {
 
@@ -63,6 +64,8 @@ public class VistaJuego implements ActionListener, Observer {
         mensaje += "\nLuego apretas el boton START y ya puedes comenzar a disparar.";
         mensaje += "\nTienes 1 disparo cruz, 1 disparo termodirigido, 2 disparos cortados y 2 disparos aleatorios.";
         mensaje += "\nEl disparo comun es ilimitado.";
+
+        this.disparoActual = "COMUN";
 
     }
     public void hacerVisible(boolean b) {
@@ -121,11 +124,14 @@ public class VistaJuego implements ActionListener, Observer {
             }
         }else if(resultMatVis!=null) {
             System.out.println("apreto boton matriz visitante: "+ "fila "+ resultMatVis[0] +" columna "+ resultMatVis[1]);
+            if(!controlador.disparoDisponible(this.disparoActual)){
+                JOptionPane.showMessageDialog(null, "No te quedan " + this.disparoActual + " disponibles\nPor favor cambia tu tipo de disparo","Error", JOptionPane.ERROR_MESSAGE);
+            }else{
             try {
                 controlador.dispararEnTablero(resultMatVis[0],resultMatVis[1]);
             } catch (InvalidDisparoException ex) {
                 ex.printStackTrace();
-            }
+            }}
         }else if(resultBarcos > -1) {
             String tipoBarco = null;
             try {
@@ -170,6 +176,7 @@ public class VistaJuego implements ActionListener, Observer {
             if(controlador.disparoDisponible(tipoDisparo)){
                 System.out.println("apreto boton tipo de disparo: "+"posicion "+ resultDisparo);
                 controlador.elegirDisparo(tipoDisparo);
+                this.disparoActual = tipoDisparo;
             }else{
                 JOptionPane.showMessageDialog(null, "No te quedan " + tipoDisparo + " disponibles","Error", JOptionPane.ERROR_MESSAGE);
             }

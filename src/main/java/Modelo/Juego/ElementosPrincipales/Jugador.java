@@ -58,8 +58,8 @@ public class Jugador {
         if(disparoDisponible(this.maneraDeDisparar.getTipo())){
             this.maneraDeDisparar.disparar(fila, columna, this.tableroDisparos);
             gastarDisparo();
-        }
-        else throw new InvalidDisparoException();
+        }else throw new InvalidDisparoException();
+
     }
 
 

@@ -12,7 +12,8 @@ public class PanelAvatar extends JPanel {
      * Create the panel.
      */
     public PanelAvatar(ImageIcon imagen) {
-        this.setSize(112,140);
+       // this.setSize(112,140);
+        this.setSize(93,140);
         this.imagen = imagen;
     }
     public void paintComponent(Graphics g) {
