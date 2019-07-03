@@ -85,8 +85,8 @@ public class Controlador implements Observer {
     public void volverInicio(){
 
         /*
-        se apaga la vista de login o configuracion
-        se enciende la vista de LogIn
+        se apaga la vista de login, configuracion o juego,
+        se enciende la vista de inicio
          */
         if(vistaJuego!=null){
             vistaJuego.hacerVisible(false);
@@ -127,6 +127,24 @@ public class Controlador implements Observer {
             modelo.puedeDisparar(false);
 
         }else vistaInicio.mensajeError();
+    }
+
+    public void revancha(){
+        this.vistaJuego.hacerVisible(false);
+        this.vistaJuego = new VistaJuego(this, this.modelo);
+        vistaJuego.ubicarAlMedio();
+        if(colorFondo!=null){
+            vistaJuego.cambiarFondo(colorFondo);
+        }
+        vistaJuego.hacerVisible(true);
+        modelo.crearJuego();
+        modelo.puedePonerBarcos(true);
+        modelo.puedeDisparar(false);
+
+    }
+    public void terminarJuego(){
+        this.vistaJuego.hacerVisible(false);
+        this.vistaJuego = null;
     }
 
     public void start(){

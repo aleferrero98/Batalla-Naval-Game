@@ -61,14 +61,18 @@ public class Modelo implements Observable {
     }
 
     public void dispararEn(int fila, int columna) throws InvalidDisparoException {
-        juegoBatallaNaval.getJugador1().disparar(fila,columna);
-        juegoBatallaNaval.actualizarMatrizJ2();
-        checkGanador();
-        notifyObservers();
-        juegoBatallaNaval.disparaMaquina();
-        juegoBatallaNaval.actualizarMatrizJ1();
-        checkGanador();
-        notifyObservers();
+        if(!getEstadoDelJuego().hayGanador()) {
+            juegoBatallaNaval.getJugador1().disparar(fila, columna);
+            juegoBatallaNaval.actualizarMatrizJ2();
+            checkGanador();
+            notifyObservers();
+        }
+        if(!getEstadoDelJuego().hayGanador()) {
+            juegoBatallaNaval.disparaMaquina();
+            juegoBatallaNaval.actualizarMatrizJ1();
+            checkGanador();
+            notifyObservers();
+        }
     }
 
     public void pausar(boolean b) {
@@ -151,7 +155,7 @@ public class Modelo implements Observable {
     public void checkGanador(){
         if(juegoBatallaNaval.getJugador1().getTableroBarcos().barcosTodosHundidos())
             this.estadoDelJuego.setGanoJ2(true);
-        else if(juegoBatallaNaval.getJugador1().getTableroBarcos().barcosTodosHundidos())
+        else if(juegoBatallaNaval.getJugador2().getTableroBarcos().barcosTodosHundidos())
             this.estadoDelJuego.setGanoJ1(true);
     }
 

@@ -35,6 +35,7 @@ public class VistaJuego implements ActionListener, Observer {
     private char charVacio;
     private String disparoActual;
 
+
     public VistaJuego(Controlador controlador, Modelo modelo) {
 
         frame=new JFrame("Juego Batalla Naval");
@@ -327,9 +328,20 @@ public class VistaJuego implements ActionListener, Observer {
 
         }
         if(modelo.ganoJ1()){
-            JOptionPane.showMessageDialog(null, "Ganaste " + modelo.getNombreJ1() + " !", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ganaste " + modelo.getNombreJ1() + "!", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
+            volverAjugar();
         }else if(modelo.ganoJ2()){
-            JOptionPane.showMessageDialog(null, "Perdiste " + modelo.getNombreJ1() + " !", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Perdiste " + modelo.getNombreJ1() + "!", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
+            volverAjugar();
+        }
+    }
+    private void volverAjugar(){
+        int revancha = JOptionPane.showConfirmDialog(null, "¿Desea volver a jugar?", "Partida finalizada", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(revancha == 0){ //si
+            this.controlador.revancha();
+        }else if(revancha == 1){ //no
+            this.controlador.terminarJuego();
+            this.controlador.volverInicio();
         }
     }
 }
