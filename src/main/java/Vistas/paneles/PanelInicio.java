@@ -80,7 +80,7 @@ public class PanelInicio extends JPanel {
         Dimension tamanio=getSize();
 
         //ImageIcon imagen=new ImageIcon("C:\\Users\\alejandro\\Documents\\GitHub\\Ing-de-Software\\src\\main\\java\\Vistas\\imagenesFondo\\batallaNaval.jpg");
-        ImageIcon imagen=new ImageIcon("src\\main\\java\\Vistas\\imagenesFondo\\batallaNaval.jpg");
+        ImageIcon imagen=new ImageIcon("src\\main\\java\\Vistas\\imagenesFondo\\batallaNavalrecortada.jpg");
         g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
         setOpaque(false);
         super.paintComponent(g);
