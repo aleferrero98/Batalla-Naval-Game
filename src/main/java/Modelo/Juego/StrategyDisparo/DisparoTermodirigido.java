@@ -11,7 +11,9 @@ public class DisparoTermodirigido implements DisparoBehavior { //Controlar, NO H
         if(!tableroDisparos.getBarcosNoHundidos().isEmpty()){
             Barco barcoADisparar = tableroDisparos.getBarcosNoHundidos().get(0);
             if(!barcoADisparar.getCeldasNoBombardeadas().isEmpty()){
-                barcoADisparar.bombardear(barcoADisparar.getCeldasNoBombardeadas().get(0));
+                fila = barcoADisparar.getCeldasNoBombardeadas().get(0).getFila();
+                columna = barcoADisparar.getCeldasNoBombardeadas().get(0).getColumna();
+                tableroDisparos.dispararUna(fila,columna);
             }
         }
         else{
